@@ -10,7 +10,8 @@
      xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:datamodel="http://www.owl-ontologies.com/datamodel.owl#">
     <owl:Ontology rdf:about="http://www.owl-ontologies.com/datamodel.owl"/>
     
 
@@ -26,72 +27,70 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#eAtributoDe -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasAttribute -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#eAtributoDe">
-        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temAtributo"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttribute">
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#eChaveDe -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasAttributeType -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#eChaveDe">
-        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#eAtributoDe"/>
-        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temChave"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#eParticipanteDeRelacao -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasKey -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#eParticipanteDeRelacao">
-        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temParticipanteDeRelacao"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasKey">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isKeyOf"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temAtributo -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasPartialKey -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temAtributo"/>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temCardinalidade -->
-
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temCardinalidade"/>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temChave -->
-
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temChave">
-        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temAtributo"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isPartialKeyOf"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temElementoParticipante -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isAttributeOf -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temElementoParticipante"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temEntidade -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isKeyOf -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temEntidade"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isKeyOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temNivelParticipacao -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isPartialKeyOf -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temNivelParticipacao"/>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temParticipanteDeRelacao -->
-
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/unnamed.owl#temParticipanteDeRelacao"/>
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isPartialKeyOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
+    </owl:ObjectProperty>
     
 
 
@@ -106,271 +105,114 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Atributo -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Attribute -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Atributo">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#AtributoComposto -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#AtributoComposto">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temAtributo"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoDerivado"/>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
     </owl:Class>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#AtributoDerivado -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#AttributeType -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#AtributoDerivado">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoMultivalorado"/>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#AtributoMultivalorado -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#AtributoMultivalorado">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#AtributoRelacional -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#AtributoRelacional">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteRelacional"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#AtributoSimples -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Cardinalidade -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Cardinalidade">
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#AttributeType">
         <owl:equivalentClass>
             <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#n"/>
-                            <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#um"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:intersectionOf>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#composedAttributeType"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+                </owl:oneOf>
             </owl:Class>
         </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
     </owl:Class>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#ComponenteER -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#ComponenteRelacional -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Entity -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#ComponenteRelacional"/>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Entidade -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Entidade">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temAtributo"/>
-                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#EntidadeForte -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Entidade"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temChave"/>
-                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Entidade"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#eParticipanteDeRelacao"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temNivelParticipacao"/>
-                                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/unnamed.owl#total"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temEntidade"/>
-                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                                <owl:onClass rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temChave"/>
-                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#NivelDeParticipacao -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#NivelDeParticipacao">
-        <owl:equivalentClass>
             <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#parcial"/>
-                            <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#total"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temCardinalidade"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Cardinalidade"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temEntidade"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Entidade"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temNivelParticipacao"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.owl-ontologies.com/unnamed.owl#NivelDeParticipacao"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Relacao -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Relacao">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteRelacional"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Relacionamento -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Relacionamento">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temAtributo"/>
-                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Atributo"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temParticipanteDeRelacao"/>
-                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#RelacionamentoDeDefinicao -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#RelacionamentoDeDefinicao">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Relacionamento"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temParticipanteDeRelacao"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temEntidade"/>
-                                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temNivelParticipacao"/>
-                                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/unnamed.owl#total"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temParticipanteDeRelacao"/>
-                <owl:someValuesFrom>
+                <owl:unionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/unnamed.owl#temEntidade"/>
-                        <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte"/>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                        <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
                     </owl:Restriction>
-                </owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+                        <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Relation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#StrongEntity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#StrongEntity">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                        <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#WeakEntity -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#WeakEntity">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -388,297 +230,97 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#controla -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#address -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#controla">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Relacionamento"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#address">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#dataInicio -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#birthDate -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#dataInicio">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#birthDate">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#dataNascimento -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#dataNascimento">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#departamento -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#composedAttributeType -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#departamento">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte"/>
-        <temChave rdf:resource="http://www.owl-ontologies.com/unnamed.owl#nome"/>
-        <temChave rdf:resource="http://www.owl-ontologies.com/unnamed.owl#numero"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#composedAttributeType">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#dependeDeEmpregado -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employee -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#dependeDeEmpregado">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employee">
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#address"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#birthDate"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#gender"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#salary"/>
+        <datamodel:hasKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#dependente -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#gender -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#dependente">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca"/>
-        <temChave rdf:resource="http://www.owl-ontologies.com/unnamed.owl#nome"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#gender">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#dependenteDe -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#salary -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#dependenteDe">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#RelacionamentoDeDefinicao"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#salary">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#empregado -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#empregado">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte"/>
-        <temChave rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ssn"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#endereco -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ssn -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#endereco">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#gerencia -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#gerencia">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Relacionamento"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#horas -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#horas">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#localizacao -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#localizacao">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#localizacoes -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#localizacoes">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoMultivalorado"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#n -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#n">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Cardinalidade"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#nome -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#nome">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#nomeEmpregado -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#nomeEmpregado">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoComposto"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#numero -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#numero">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#numeroEmpregados -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#numeroEmpregados">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoDerivado"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#pNome -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#pNome">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#parcial -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#parcial">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#NivelDeParticipacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#parentesco -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#parentesco">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#projeto -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#projeto">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte"/>
-        <temChave rdf:resource="http://www.owl-ontologies.com/unnamed.owl#nome"/>
-        <temChave rdf:resource="http://www.owl-ontologies.com/unnamed.owl#numero"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#salario -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#salario">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#sexo -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#sexo">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#ssn -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#ssn">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#supervisiona -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#supervisiona">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Relacionamento"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#supervisionaEmpregado -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#supervisionaEmpregado">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temDependente -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#temDependente">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temEmpregadoParticipante -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#temEmpregadoParticipante">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#temEmpregadoSupervisor -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#temEmpregadoSupervisor">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#total -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#total">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#NivelDeParticipacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#trabalhaEm -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#trabalhaEm">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Relacionamento"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#trabalhaEmProjeto -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#trabalhaEmProjeto">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ParticipanteDeRelacao"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#trabalhaPara -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#trabalhaPara">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Relacionamento"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#uNome -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#uNome">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#AtributoSimples"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#um -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/unnamed.owl#um">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Cardinalidade"/>
-    </owl:NamedIndividual>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
