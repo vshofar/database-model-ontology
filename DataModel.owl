@@ -30,6 +30,7 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#hasAttribute -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttribute">
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
     </owl:ObjectProperty>
@@ -62,6 +63,14 @@
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isAttributeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
     </owl:ObjectProperty>
     
 
@@ -105,6 +114,7 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
     </owl:Class>
     
 
@@ -271,9 +281,7 @@
 
     <!-- http://www.owl-ontologies.com/datamodel.owl#ssn -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#ssn">
-        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
     
 
 
