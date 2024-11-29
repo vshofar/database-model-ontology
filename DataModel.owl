@@ -160,13 +160,17 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#StrongEntity -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#StrongEntity">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
-                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                        <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
     </owl:Class>
     
@@ -232,7 +236,11 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#employee -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employee">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#StrongEntity"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#address"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#birthDate"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#gender"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#salary"/>
+        <datamodel:hasKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
     </owl:NamedIndividual>
     
 
