@@ -35,6 +35,15 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasAttributeType -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#hasKey -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasKey">
