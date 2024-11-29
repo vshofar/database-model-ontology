@@ -1,0 +1,7 @@
+- use known facts and inferences for then provides a way to validae ontology class and property description.
+    - these samples algo can be used as "unit tests" in the form of queries wich answers are previouly known.
+    - these queries cane bem reexecuted to validate if ontology has desarisde bahavior for inferences
+
+- prefer use on inference to classify known instance classes
+    - using property with defined domain and range can improve instances classification
+    - use os disjoint statement also helps detect ontology inconsistency
