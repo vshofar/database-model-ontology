@@ -10,7 +10,8 @@
      xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:datamodel="http://www.owl-ontologies.com/datamodel.owl#">
     <owl:Ontology rdf:about="http://www.owl-ontologies.com/datamodel.owl"/>
     
 
@@ -80,6 +81,13 @@
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute">
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -189,6 +197,22 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#address -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#address">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#birthDate -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#birthDate">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType">
@@ -205,10 +229,42 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employee -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employee">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#StrongEntity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#gender -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#gender">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#salary -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#salary">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ssn -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#ssn">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
 
