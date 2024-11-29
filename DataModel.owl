@@ -18,6 +18,47 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasAttribute -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttribute">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasKey -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasKey">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasPartialKey -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -26,54 +67,93 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Atributo -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Attribute -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Atributo">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
     </owl:Class>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#AtributoRelacional -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#AtributoRelacional"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#ComponenteER -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Entity -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Entidade -->
-
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Entidade">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ComponenteER"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#EntidadeForte -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Relation -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#EntidadeForte">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Entidade"/>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#StrongEntity -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#EntidadeFraca">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/unnamed.owl#Entidade"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#StrongEntity">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
     </owl:Class>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#Relacao -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#WeakEntity -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/unnamed.owl#Relacao"/>
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#WeakEntity">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
