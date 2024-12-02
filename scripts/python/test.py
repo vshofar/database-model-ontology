@@ -2,7 +2,7 @@ from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
 
 manager = OntologyManager()
-onto = manager.load_ontology(IRI.create("file:///home/vbatista/estudo/ontologias/datamodel/owl/owl-functional.ofn"))
+onto = manager.load_ontology(IRI.create("file:///home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl"))
 
 
 '''
