@@ -1,312 +1,220 @@
-<?xml version="1.0"?>
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.owl-ontologies.com/datamodel.owl"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://www.owl-ontologies.com/datamodel.owl">
-    <Prefix name="" IRI="http://www.owl-ontologies.com/datamodel.owl#"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Declaration>
-        <Class IRI="#Attribute"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#AttributeType"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#ConceptualComponent"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Entity"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Relation"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#StrongEntity"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#WeakEntity"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hasAttribute"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hasAttributeType"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hasKey"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hasPartialKey"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#isAttributeOf"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#isKeyOf"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#isPartialKeyOf"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#address"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#birthDate"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#calculatedAttributeType"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#composedAttributeType"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#employee"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#gender"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#salary"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#simpleAttributeType"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#ssn"/>
-    </Declaration>
-    <EquivalentClasses>
-        <Class IRI="#AttributeType"/>
-        <ObjectOneOf>
-            <NamedIndividual IRI="#calculatedAttributeType"/>
-            <NamedIndividual IRI="#composedAttributeType"/>
-            <NamedIndividual IRI="#simpleAttributeType"/>
-        </ObjectOneOf>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#StrongEntity"/>
-        <ObjectIntersectionOf>
-            <Class IRI="#Entity"/>
-            <ObjectSomeValuesFrom>
-                <ObjectProperty IRI="#hasKey"/>
-                <Class IRI="#Attribute"/>
-            </ObjectSomeValuesFrom>
-        </ObjectIntersectionOf>
-    </EquivalentClasses>
-    <SubClassOf>
-        <Class IRI="#Attribute"/>
-        <Class IRI="#ConceptualComponent"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Attribute"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#hasAttributeType"/>
-            <Class IRI="#AttributeType"/>
-        </ObjectExactCardinality>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#AttributeType"/>
-        <Class IRI="#ConceptualComponent"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Entity"/>
-        <Class IRI="#ConceptualComponent"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Entity"/>
-        <ObjectUnionOf>
-            <ObjectSomeValuesFrom>
-                <ObjectProperty IRI="#hasKey"/>
-                <Class IRI="#Attribute"/>
-            </ObjectSomeValuesFrom>
-            <ObjectSomeValuesFrom>
-                <ObjectProperty IRI="#hasPartialKey"/>
-                <Class IRI="#Attribute"/>
-            </ObjectSomeValuesFrom>
-        </ObjectUnionOf>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Entity"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasAttribute"/>
-            <Class IRI="#Attribute"/>
-        </ObjectSomeValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Relation"/>
-        <Class IRI="#ConceptualComponent"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Relation"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="#hasAttribute"/>
-            <Class IRI="#Attribute"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#WeakEntity"/>
-        <Class IRI="#Entity"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#WeakEntity"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasPartialKey"/>
-            <Class IRI="#Attribute"/>
-        </ObjectSomeValuesFrom>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class IRI="#Attribute"/>
-        <Class IRI="#AttributeType"/>
-        <Class IRI="#Entity"/>
-        <Class IRI="#Relation"/>
-    </DisjointClasses>
-    <DisjointClasses>
-        <Class IRI="#AttributeType"/>
-        <Class IRI="#Entity"/>
-    </DisjointClasses>
-    <DisjointClasses>
-        <Class IRI="#StrongEntity"/>
-        <Class IRI="#WeakEntity"/>
-    </DisjointClasses>
-    <ClassAssertion>
-        <Class IRI="#AttributeType"/>
-        <NamedIndividual IRI="#calculatedAttributeType"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#AttributeType"/>
-        <NamedIndividual IRI="#composedAttributeType"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#AttributeType"/>
-        <NamedIndividual IRI="#simpleAttributeType"/>
-    </ClassAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttributeType"/>
-        <NamedIndividual IRI="#address"/>
-        <NamedIndividual IRI="#simpleAttributeType"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttributeType"/>
-        <NamedIndividual IRI="#birthDate"/>
-        <NamedIndividual IRI="#simpleAttributeType"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <NamedIndividual IRI="#employee"/>
-        <NamedIndividual IRI="#address"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <NamedIndividual IRI="#employee"/>
-        <NamedIndividual IRI="#birthDate"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <NamedIndividual IRI="#employee"/>
-        <NamedIndividual IRI="#gender"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <NamedIndividual IRI="#employee"/>
-        <NamedIndividual IRI="#salary"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasKey"/>
-        <NamedIndividual IRI="#employee"/>
-        <NamedIndividual IRI="#ssn"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttributeType"/>
-        <NamedIndividual IRI="#gender"/>
-        <NamedIndividual IRI="#simpleAttributeType"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#hasAttributeType"/>
-        <NamedIndividual IRI="#salary"/>
-        <NamedIndividual IRI="#simpleAttributeType"/>
-    </ObjectPropertyAssertion>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#hasKey"/>
-        <ObjectProperty IRI="#hasAttribute"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#hasPartialKey"/>
-        <ObjectProperty IRI="#hasAttribute"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#isAttributeOf"/>
-        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#isKeyOf"/>
-        <ObjectProperty IRI="#isAttributeOf"/>
-    </SubObjectPropertyOf>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#isPartialKeyOf"/>
-        <ObjectProperty IRI="#isAttributeOf"/>
-    </SubObjectPropertyOf>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <ObjectProperty IRI="#isAttributeOf"/>
-    </InverseObjectProperties>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="#hasKey"/>
-        <ObjectProperty IRI="#isKeyOf"/>
-    </InverseObjectProperties>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="#hasPartialKey"/>
-        <ObjectProperty IRI="#isPartialKeyOf"/>
-    </InverseObjectProperties>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <Class IRI="#Entity"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasAttributeType"/>
-        <Class IRI="#Attribute"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasKey"/>
-        <Class IRI="#Entity"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasPartialKey"/>
-        <Class IRI="#Entity"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <Class IRI="#Attribute"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasAttributeType"/>
-        <Class IRI="#AttributeType"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasKey"/>
-        <Class IRI="#Attribute"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasPartialKey"/>
-        <Class IRI="#Attribute"/>
-    </ObjectPropertyRange>
-    <DisjointObjectProperties>
-        <ObjectProperty IRI="#hasAttribute"/>
-        <ObjectProperty IRI="#hasAttributeType"/>
-    </DisjointObjectProperties>
-    <DisjointObjectProperties>
-        <ObjectProperty IRI="#hasKey"/>
-        <ObjectProperty IRI="#hasPartialKey"/>
-    </DisjointObjectProperties>
-</Ontology>
-
-
-
-<!-- Generated by the OWL API (version 5.5.1) https://github.com/owlcs/owlapi/ -->
-
-
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns="http://www.owl-ontologies.com/datamodel.owl#"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:nodeID="N756c0d7e616348b9b5487bc9d61d0c9c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType"/>
+    <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#isKeyOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#StrongEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="N67104225ff884ed78ea248a5acc23a45"/>
+    <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ne646d1887a08456f8ab2bbe9efde0e57">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+    <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na54a1fbeda874fbb8f36399c1da7e983">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N21492e9d581c4e4f9317ea40c05e6a26">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+    <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+    <rdfs:subClassOf rdf:nodeID="N3bc3c1e280f446439bfa8083f65fb258"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N67104225ff884ed78ea248a5acc23a45">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="Nc2bcf8d529f84e56b1ad3e0981af5a1e"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#birthDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N49f8c15c27424b7790ae48d6a0c0e133">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+    <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N9af9b8f9c9f1485c9153615a460f35df">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="Neef6b96df144446b8ddeec8f32a2e4b7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf9370eb742454f5b8aa5c1a4d0ee5d16">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#composedAttributeType"/>
+    <rdf:rest rdf:nodeID="Nbe00309660a843c9990d72b867662e0c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N91e94114538e4f4ea47abb6f649aae6f">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType"/>
+    <rdf:rest rdf:nodeID="Nf9370eb742454f5b8aa5c1a4d0ee5d16"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nbe00309660a843c9990d72b867662e0c">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb29c998f2a004f2baec29ecf24f7ed09">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+    <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isPartialKeyOf"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#gender">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasKey">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isKeyOf"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    <owl:propertyDisjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+    <rdfs:subClassOf rdf:nodeID="N8ba3b21dbb154c9cb28b43165d247c24"/>
+    <rdfs:subClassOf rdf:nodeID="N21492e9d581c4e4f9317ea40c05e6a26"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+    <rdfs:subClassOf rdf:nodeID="N756c0d7e616348b9b5487bc9d61d0c9c"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#WeakEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    <rdfs:subClassOf rdf:nodeID="Nb29c998f2a004f2baec29ecf24f7ed09"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttribute">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    <owl:propertyDisjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb7627128adc94ca599cffa88f310aeaa">
+    <rdf:first rdf:nodeID="Ne646d1887a08456f8ab2bbe9efde0e57"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8ba3b21dbb154c9cb28b43165d247c24">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="N23c793c640544a8394be82067c9f1b8b"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#AttributeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="Nab80cd4e0d164f448a8e29dc3aaaf1ad"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+    <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#composedAttributeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#employee">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#address"/>
+    <hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#birthDate"/>
+    <hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#gender"/>
+    <hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#salary"/>
+    <hasKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#address">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasAttributeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N23c793c640544a8394be82067c9f1b8b">
+    <rdf:first rdf:nodeID="N5d674d256e294858ab4944cd2e270d35"/>
+    <rdf:rest rdf:nodeID="Nb7627128adc94ca599cffa88f310aeaa"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N3bc3c1e280f446439bfa8083f65fb258">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasAttribute"/>
+    <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na417c76194a1405795cc9cf99c9ed6ad">
+    <rdf:first rdf:nodeID="N49f8c15c27424b7790ae48d6a0c0e133"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nc2bcf8d529f84e56b1ad3e0981af5a1e">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    <rdf:rest rdf:nodeID="Na417c76194a1405795cc9cf99c9ed6ad"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Na85e0a02e0614d47b96edf2ed31c9664">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    <rdf:rest rdf:nodeID="Na54a1fbeda874fbb8f36399c1da7e983"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5d674d256e294858ab4944cd2e270d35">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+    <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#salary">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Neef6b96df144446b8ddeec8f32a2e4b7">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+    <rdf:rest rdf:nodeID="N8722357e87344a04816f6b802205ca7b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N8722357e87344a04816f6b802205ca7b">
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+    <rdf:rest rdf:nodeID="Na85e0a02e0614d47b96edf2ed31c9664"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nab80cd4e0d164f448a8e29dc3aaaf1ad">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:oneOf rdf:nodeID="N91e94114538e4f4ea47abb6f649aae6f"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#isPartialKeyOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ssn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  </rdf:Description>
+</rdf:RDF>

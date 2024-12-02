@@ -1,20 +1,19 @@
+from rdflib import Graph
+from funowl.converters.functional_converter import to_python
 
-# java -jar ./app/build/libs/app-standalone.jar /home/vbatista/estudo/ontologias/datamodel/owl/datamodel-functional.ofn /home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl
+def convert(origin_path, dest_path):
+    origin_representation = to_python(origin_path)
 
-import subprocess
+    g = Graph()
+    origin_representation.to_rdf(g)
+    xml_content = g.serialize(format="xml")
 
-converter = "libs/app-standalone.jar"
-origin = "/home/vbatista/estudo/ontologias/datamodel/owl/datamodel-functional.ofn"
-dest = "/home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl"
+    f = open(dest_path, "w")
+    f.write(xml_content)
+    f.close()
 
-command = "java -jar {converter} {origin} {dest}".format(converter=converter, origin=origin, dest=dest)
+convert("/home/vbatista/estudo/ontologias/datamodel/owl/datamodel-functional.ofn", "/home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl")    
 
-def run_command(command):
-    p = subprocess.Popen(command, shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT)
-    return p.communicate()
 
-run_command(command)
 
 
