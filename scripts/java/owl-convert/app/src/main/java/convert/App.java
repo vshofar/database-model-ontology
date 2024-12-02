@@ -9,23 +9,21 @@ import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+public class App {    
 
     public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException {
-        System.out.println(new App().getGreeting());
+        IRI origin  = IRI.create("file://"+args[0]);
+        IRI dest  = IRI.create("file://"+args[1]);
 
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        OWLOntology ontology = manager.loadOntology(IRI.create("file:////home/vbatista/estudo/ontologias/datamodel/owl/datamodel-functional.ofn"));        
-        OWLDocumentFormat format = manager.getOntologyFormat(ontology);
+        OWLOntology ontology = manager.loadOntology(origin);        
+        OWLDocumentFormat originFormat = manager.getOntologyFormat(ontology);
 
-        OWLXMLOntologyFormat owlxmlFormat = new OWLXMLOntologyFormat();
-        if (format.isPrefixOWLDocumentFormat()) {
-            owlxmlFormat.copyPrefixesFrom(format.asPrefixOWLDocumentFormat());
+        OWLXMLOntologyFormat destFormat = new OWLXMLOntologyFormat();
+        if (originFormat.isPrefixOWLDocumentFormat()) {
+            destFormat.copyPrefixesFrom(originFormat.asPrefixOWLDocumentFormat());
         }
 
-        manager.saveOntology(ontology, owlxmlFormat, IRI.create("file:////home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl"));
+        manager.saveOntology(ontology, destFormat, dest);
     }
 }
