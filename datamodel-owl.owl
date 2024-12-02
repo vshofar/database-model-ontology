@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.owl-ontologies.com/datamodel.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.owl-ontologies.com/datamodel.owl">
+    <Prefix name="" IRI="http://www.owl-ontologies.com/datamodel.owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Attribute"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AttributeType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConceptualComponent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Entity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Relation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#StrongEntity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WeakEntity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAttributeType"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasKey"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPartialKey"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isAttributeOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isKeyOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isPartialKeyOf"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#address"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#birthDate"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#calculatedAttributeType"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#composedAttributeType"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#employee"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#gender"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#salary"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#simpleAttributeType"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ssn"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#AttributeType"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#calculatedAttributeType"/>
+            <NamedIndividual IRI="#composedAttributeType"/>
+            <NamedIndividual IRI="#simpleAttributeType"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#StrongEntity"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Entity"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasKey"/>
+                <Class IRI="#Attribute"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Attribute"/>
+        <Class IRI="#ConceptualComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Attribute"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasAttributeType"/>
+            <Class IRI="#AttributeType"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AttributeType"/>
+        <Class IRI="#ConceptualComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Entity"/>
+        <Class IRI="#ConceptualComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Entity"/>
+        <ObjectUnionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasKey"/>
+                <Class IRI="#Attribute"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasPartialKey"/>
+                <Class IRI="#Attribute"/>
+            </ObjectSomeValuesFrom>
+        </ObjectUnionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Entity"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasAttribute"/>
+            <Class IRI="#Attribute"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Relation"/>
+        <Class IRI="#ConceptualComponent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Relation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#hasAttribute"/>
+            <Class IRI="#Attribute"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WeakEntity"/>
+        <Class IRI="#Entity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WeakEntity"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasPartialKey"/>
+            <Class IRI="#Attribute"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Attribute"/>
+        <Class IRI="#AttributeType"/>
+        <Class IRI="#Entity"/>
+        <Class IRI="#Relation"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#AttributeType"/>
+        <Class IRI="#Entity"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#StrongEntity"/>
+        <Class IRI="#WeakEntity"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#AttributeType"/>
+        <NamedIndividual IRI="#calculatedAttributeType"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AttributeType"/>
+        <NamedIndividual IRI="#composedAttributeType"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AttributeType"/>
+        <NamedIndividual IRI="#simpleAttributeType"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttributeType"/>
+        <NamedIndividual IRI="#address"/>
+        <NamedIndividual IRI="#simpleAttributeType"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttributeType"/>
+        <NamedIndividual IRI="#birthDate"/>
+        <NamedIndividual IRI="#simpleAttributeType"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <NamedIndividual IRI="#employee"/>
+        <NamedIndividual IRI="#address"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <NamedIndividual IRI="#employee"/>
+        <NamedIndividual IRI="#birthDate"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <NamedIndividual IRI="#employee"/>
+        <NamedIndividual IRI="#gender"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <NamedIndividual IRI="#employee"/>
+        <NamedIndividual IRI="#salary"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasKey"/>
+        <NamedIndividual IRI="#employee"/>
+        <NamedIndividual IRI="#ssn"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttributeType"/>
+        <NamedIndividual IRI="#gender"/>
+        <NamedIndividual IRI="#simpleAttributeType"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAttributeType"/>
+        <NamedIndividual IRI="#salary"/>
+        <NamedIndividual IRI="#simpleAttributeType"/>
+    </ObjectPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasKey"/>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasPartialKey"/>
+        <ObjectProperty IRI="#hasAttribute"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isAttributeOf"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isKeyOf"/>
+        <ObjectProperty IRI="#isAttributeOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isPartialKeyOf"/>
+        <ObjectProperty IRI="#isAttributeOf"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <ObjectProperty IRI="#isAttributeOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasKey"/>
+        <ObjectProperty IRI="#isKeyOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasPartialKey"/>
+        <ObjectProperty IRI="#isPartialKeyOf"/>
+    </InverseObjectProperties>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <Class IRI="#Entity"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasAttributeType"/>
+        <Class IRI="#Attribute"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasKey"/>
+        <Class IRI="#Entity"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasPartialKey"/>
+        <Class IRI="#Entity"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <Class IRI="#Attribute"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasAttributeType"/>
+        <Class IRI="#AttributeType"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasKey"/>
+        <Class IRI="#Attribute"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasPartialKey"/>
+        <Class IRI="#Attribute"/>
+    </ObjectPropertyRange>
+    <DisjointObjectProperties>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <ObjectProperty IRI="#hasAttributeType"/>
+    </DisjointObjectProperties>
+    <DisjointObjectProperties>
+        <ObjectProperty IRI="#hasKey"/>
+        <ObjectProperty IRI="#hasPartialKey"/>
+    </DisjointObjectProperties>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 5.5.1.2024-09-07T21:41:32Z) https://github.com/owlcs/owlapi/ -->
+
+
