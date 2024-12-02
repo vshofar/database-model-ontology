@@ -9,7 +9,7 @@ import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 
-public class App {    
+public class Converter {    
 
     public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException {
         IRI origin  = IRI.create("file://"+args[0]);

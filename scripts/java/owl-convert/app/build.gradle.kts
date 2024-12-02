@@ -36,7 +36,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "convert.App"
+    mainClass = "convert.Converter"
 }
 
 tasks.named<Test>("test") {
