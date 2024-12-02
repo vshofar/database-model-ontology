@@ -5,3 +5,5 @@
 - prefer use on inference to classify known instance classes
     - using property with defined domain and range can improve instances classification
     - use os disjoint statement also helps detect ontology inconsistency
+
+java -jar ./app/build/libs/app-standalone.jar /home/vbatista/estudo/ontologias/datamodel/owl/datamodel-functional.ofn /home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl
