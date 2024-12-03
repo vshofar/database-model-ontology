@@ -6,7 +6,7 @@ def convert(origin_path, dest_path):
 
     g = Graph()
     origin_representation.to_rdf(g)
-    xml_content = g.serialize(format="xml")
+    xml_content = g.serialize(format="rdf/xml")
 
     f = open(dest_path, "w")
     f.write(xml_content)
