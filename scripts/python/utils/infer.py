@@ -1,27 +1,43 @@
 #!/usr/bin/env python 
 
-from owlapy.iri import IRI
-from owlapy.owl_ontology_manager import OntologyManager
-from owlapy.owl_reasoner import SyncReasoner
-from owlapy.static_funcs import stopJVM
+from owlready2 import *
 
-ontology_path = "/home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl"
-sync_reasoner = SyncReasoner(ontology = ontology_path, reasoner="HermiT")
-onto = OntologyManager().load_ontology(ontology_path)
+onto = get_ontology("/home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl").load()
+#onto = get_ontology("/home/vbatista/estudo/ontologias/datamodel/owl/DataModel.owl").load()
 
-onto.save(IRI.create("/home/vbatista/estudo/ontologias/datamodel/owl/original.ofn"))
+def remove_all_individuals(onto):
+    for i in list(onto.individuals()):
+        destroy_entity(i)
+
+def print_all_individuals(onto):
+    print("Print all individuals..")
+    for i in onto.individuals():
+        print(i)
 
 
-'''
-sync_reasoner.infer_axioms_and_save(output_path="/home/vbatista/estudo/ontologias/datamodel/owl/inferred.ofn",
-                       output_format="rdf/xml",
-                       inference_types=[
-                           "InferredClassAssertionAxiomGenerator",
-                           "InferredEquivalentClassAxiomGenerator",
-                           "InferredDisjointClassesAxiomGenerator",
-                                        "InferredSubClassAxiomGenerator",
-                                        "InferredInverseObjectPropertiesAxiomGenerator",
-                                        "InferredEquivalentClassAxiomGenerator"])
-'''
+remove_all_individuals(onto)        
+
+employee = Thing("employee",onto)
+ssn = Thing("ssn", onto)
+employee.hasKey = [ssn]
+
+
+sync_reasoner_pellet(infer_property_values = True)
+
+assert(onto.StrongEntity in onto.employee.is_a)
+assert(onto.Attribute in onto.ssn.is_a)
+assert(onto.employee.hasAttribute == [onto.ssn])
+assert(onto.ssn.isAttributeOf == [onto.employee])
+assert(onto.ssn.isKeyOf == [onto.employee])
+
+
+
+
+
+
+
+
+
+
 
 
