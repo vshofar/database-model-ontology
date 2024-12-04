@@ -24,8 +24,8 @@ employee.hasKey = [ssn]
 
 sync_reasoner_pellet(infer_property_values = True)
 
-assert(onto.StrongEntity in onto.employee.is_a)
-assert(onto.Attribute in onto.ssn.is_a)
+assert(onto.employee.is_a == [onto.StrongEntity])
+assert(onto.ssn.is_a == [onto.Attribute])
 assert(onto.employee.hasAttribute == [onto.ssn])
 assert(onto.ssn.isAttributeOf == [onto.employee])
 assert(onto.ssn.isKeyOf == [onto.employee])
