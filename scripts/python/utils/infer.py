@@ -18,7 +18,7 @@ remove_all_individuals(onto)
 
 employee = Thing("employee",onto)
 ssn = Thing("ssn", onto)
-employee.hasKey = [ssn]
+employee.hasKey.append(ssn)
 
 inferences = get_ontology("http://tests/Inferences.owl")
 
@@ -27,11 +27,12 @@ with inferences:
     sync_reasoner_pellet(infer_property_values = True, infer_data_property_values = True)
     
 
-assert(onto.employee in onto.Entity.instances())
-assert(onto.employee in onto.StrongEntity.instances())
-assert(onto.employee.hasAttribute == [onto.ssn])
-assert(onto.ssn.isAttributeOf == [onto.employee])
-assert(onto.ssn.isKeyOf == [onto.employee])
+assert(employee in onto.Entity.instances())
+assert(employee in onto.StrongEntity.instances())
+assert(employee in ssn.isAttributeOf)
+assert(employee in ssn.isKeyOf )
+assert(ssn in onto.employee.hasAttribute)
+
 
 
 
