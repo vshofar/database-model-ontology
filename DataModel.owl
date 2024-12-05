@@ -129,6 +129,7 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#hasRelationAttribute -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasRelationAttribute">
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isRelationAttributeOf"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationAttribute"/>
     </owl:ObjectProperty>
@@ -162,6 +163,12 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#isParticipationEntityOf -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isParticipationEntityOf"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isRelationAttributeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isRelationAttributeOf"/>
     
 
 

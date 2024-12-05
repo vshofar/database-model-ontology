@@ -1,9 +1,10 @@
 from owlready2 import *
 
 
-def remove_all_individuals(onto):
+def remove_all_individuals(onto, expect=[]):
     for i in list(onto.individuals()):
-        destroy_entity(i)
+        if i not in expect:
+            destroy_entity(i)
 
 def print_all_individuals(onto):
     print("Print all individuals..")
