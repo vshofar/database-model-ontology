@@ -57,6 +57,22 @@ class TestEntity(unittest.TestCase):
         self.assertIn(dependent, dependentName.isAttributeOf)
         self.assertIn(dependent, dependentName.isPartialKeyOf )
         self.assertIn(dependentName, dependent.hasAttribute)         
+
+    def test_given_thing_isAttributeOf_thing_should_infer(self):
+
+        onto = load_ontology()
+
+        remove_all_individuals(onto)        
+        
+        dependent = Thing("dependent",onto)
+        dependentGender = Thing("dependentGender", onto)
+        dependentGender.isAttributeOf.append(dependent)    
+
+        sync_reasoner()        
+
+        self.assertIn(dependent, onto.Entity.instances())                
+        self.assertIn(dependentGender, dependent.hasAttribute)        
+        self.assertIn(dependentGender, onto.Attribute.instances())    
         
 
 if __name__ == '__main__':
