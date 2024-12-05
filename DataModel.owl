@@ -133,7 +133,6 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
     </owl:Class>
     
 
@@ -172,9 +171,41 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#Relation -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality -->
 
-    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation">
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#totalParticipationLevel"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#Relationship -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relationship">
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -182,6 +213,14 @@
                 <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
     </owl:Class>
     
 
@@ -341,10 +380,42 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#totalParticipationLevel -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#totalParticipationLevel">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
     </owl:NamedIndividual>
     
 
@@ -363,7 +434,31 @@
             <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
