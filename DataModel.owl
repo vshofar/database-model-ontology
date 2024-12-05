@@ -79,9 +79,9 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinaity -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality -->
 
-    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinaity">
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
     </owl:ObjectProperty>
@@ -281,7 +281,7 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinaity"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
             </owl:Restriction>
@@ -406,6 +406,35 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#dependentName -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentName"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependentsOfRelationship -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentsOfRelationship">
+        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependetsOfEmployeeRelationshiptParticipation"/>
+        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependsOfDependentRelationshipParticipation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependetsOfEmployeeRelationshiptParticipation -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependetsOfEmployeeRelationshiptParticipation">
+        <datamodel:hasParticipationCardinality rdf:resource="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
+        <datamodel:hasParticipationEntity rdf:resource="http://www.owl-ontologies.com/datamodel.owl#employee"/>
+        <datamodel:hasParticipationLevel rdf:resource="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependsOfDependentRelationshipParticipation -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependsOfDependentRelationshipParticipation">
+        <datamodel:hasParticipationCardinality rdf:resource="http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality"/>
+        <datamodel:hasParticipationEntity rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependent"/>
+        <datamodel:hasParticipationLevel rdf:resource="http://www.owl-ontologies.com/datamodel.owl#totalParticipationLevel"/>
+    </owl:NamedIndividual>
     
 
 
