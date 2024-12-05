@@ -3,57 +3,23 @@
 import unittest 
 from utils import *
 
-class TestRElationship(unittest.TestCase):
+class TestRelationshipParticipation(unittest.TestCase):
 
-    def test_given_thing_hasParticipationEntity_thing_should_infer(self):
-
-        onto = load_ontology()
-
-        remove_all_individuals(onto)        
-        
-        employee = Thing("employee",onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", onto)
-        dependetsOfRelationshipParticipation.hasParticipationEntity.append(employee)
-        
-
-        sync_reasoner()        
-
-        self.assertIn(dependetsOfRelationshipParticipation, onto.RelationshipParticipation.instances())
-
-
-    def test_given_thing_hasParticipationCardinality_thing_should_infer(self):
+    def test_given_thing_hasRelationshipParticipation_thing_should_infer(self):
 
         onto = load_ontology()
 
         remove_all_individuals(onto)        
         
-        one = Thing("one",onto)
+        dependsOfRelationship = Thing("dependsOfRelationship",onto)
         dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", onto)
-        dependetsOfRelationshipParticipation.hasParticipationCardinality.append(one)
+        dependsOfRelationship.hasParticipation.append(dependetsOfRelationshipParticipation)
         
 
         sync_reasoner()        
 
-        self.assertIn(dependetsOfRelationshipParticipation, onto.RelationshipParticipation.instances())              
+        self.assertIn(dependsOfRelationship, onto.Relationship.instances())
 
-
-    def test_given_thing_hasParticipationLevel_thing_should_infer(self):
-
-        onto = load_ontology()
-
-        remove_all_individuals(onto)        
-        
-        total = Thing("total",onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", onto)
-        dependetsOfRelationshipParticipation.hasParticipationLevel.append(total)
-        
-
-        sync_reasoner()        
-
-        self.assertIn(dependetsOfRelationshipParticipation, onto.RelationshipParticipation.instances())              
-
-    
-        
 
 if __name__ == '__main__':
     unittest.main()
