@@ -70,6 +70,44 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasParticipation -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasParticipation">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinaity -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinaity">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity">
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isParticipationEntityOf"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasParticipationLevel -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasParticipationLevel">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#isAttributeOf -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf">
@@ -91,6 +129,12 @@
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isPartialKeyOf">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isParticipationEntityOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isParticipationEntityOf"/>
     
 
 
@@ -213,6 +257,20 @@
                 <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -221,6 +279,27 @@
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation">
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ConceptualComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinaity"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationLevel"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
