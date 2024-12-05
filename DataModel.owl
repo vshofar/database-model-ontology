@@ -234,22 +234,6 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#address -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#address">
-        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/datamodel.owl#birthDate -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#birthDate">
-        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType">
@@ -274,6 +258,33 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependentBirthDate -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentBirthDate">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+        <datamodel:isAttributeOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependentGender -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentGender">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+        <datamodel:isAttributeOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependentKinship -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentKinship">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+        <datamodel:isAttributeOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependent"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#dependentName -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentName"/>
@@ -283,26 +294,48 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#employee -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employee">
-        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#address"/>
-        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#birthDate"/>
-        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#gender"/>
-        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#salary"/>
-        <datamodel:hasKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#employeeAddress"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#employeeBirthDate"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#employeeSalary"/>
+        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#employee_gender"/>
+        <datamodel:hasKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#employeeSSN"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#gender -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employeeAddress -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#gender">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employeeAddress">
         <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#salary -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employeeBirthDate -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#salary">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employeeBirthDate">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employeeSSN -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employeeSSN"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employeeSalary -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employeeSalary">
+        <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#employee_gender -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#employee_gender">
         <datamodel:hasAttributeType rdf:resource="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType"/>
     </owl:NamedIndividual>
     
@@ -313,12 +346,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#simpleAttributeType">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
     </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/datamodel.owl#ssn -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#ssn"/>
     
 
 
