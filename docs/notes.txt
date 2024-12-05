@@ -6,4 +6,9 @@
     - using property with defined domain and range can improve instances classification
     - use os disjoint statement also helps detect ontology inconsistency
 
-java -jar ./app/build/libs/app-standalone.jar /home/vbatista/estudo/ontologias/datamodel/owl/datamodel-functional.ofn /home/vbatista/estudo/ontologias/datamodel/owl/datamodel-owl.owl
+- some modeling in fol can have alternatives modeling using dl
+    - the domain describes a relation betwenn the type o entity (strong or weak) and the concept of 'partial keys'
+    - in fol we explict declare when a entity is weak and infer partial keys
+    - in owl otherwise use declare partial keys using the relation 'hasPartialKey' and use it to infer weak entityes
+    - it looks to be the better alternative to addres the initial requirement of using relations to declare facts ans infer class instances
+
