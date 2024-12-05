@@ -1,44 +1,32 @@
 #!/usr/bin/env python 
 
-from owlready2 import *
+import unittest 
+from utils import *
 
-def remove_all_individuals(onto):
-    for i in list(onto.individuals()):
-        destroy_entity(i)
+class TestEntity(unittest.TestCase):
 
-def print_all_individuals(onto):
-    print("Print all individuals..")
-    for i in onto.individuals():
-        print(i)
+    def test_given_employee_haskey_ssn_infer(self):
+        onto = load_ontology()
 
-def load_ontology():        
-    onto = get_ontology("/home/vbatista/estudo/ontologias/datamodel/owl/DataModel.owl").load()
-    return onto
+        remove_all_individuals(onto)        
 
+        entity = onto.Entity
+        strongEntity = onto.StrongEntity
+        employee = Thing("employee",onto)
+        ssn = Thing("ssn", onto)
+        employee.hasKey.append(ssn)    
 
-def given_employee_haskey_ssn_infer(onto):
-    remove_all_individuals(onto)        
+        sync_reasoner()        
 
-    employee = Thing("employee",onto)
-    ssn = Thing("ssn", onto)
-    employee.hasKey.append(ssn)
+        self.assertIn(employee, entity.instances())
+        self.assertIn(employee, strongEntity.instances())
+        self.assertIn(employee, ssn.isAttributeOf)
+        self.assertIn(employee, ssn.isKeyOf )
+        self.assertIn(ssn, employee.hasAttribute)        
 
-    inferences = get_ontology("http://tests/Inferences.owl")
+if __name__ == '__main__':
+    unittest.main()
 
-
-    with inferences:
-        sync_reasoner_pellet(infer_property_values = True, infer_data_property_values = True)
-        
-
-    assert(employee in onto.Entity.instances())
-    assert(employee in onto.StrongEntity.instances())
-    assert(employee in ssn.isAttributeOf)
-    assert(employee in ssn.isKeyOf )
-    assert(ssn in onto.employee.hasAttribute)
-
-
-onto = load_ontology()
-given_employee_haskey_ssn_infer(onto)
 
 
 
