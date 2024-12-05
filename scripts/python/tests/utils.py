@@ -15,4 +15,4 @@ def load_ontology():
     return onto
 
 def sync_reasoner():
-    sync_reasoner_pellet(infer_property_values = True, infer_data_property_values = True)
+    sync_reasoner_pellet(infer_property_values = True, infer_data_property_values = True, debug = False)
