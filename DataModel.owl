@@ -208,13 +208,17 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#WeakEntity -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#WeakEntity">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
-                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Entity"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialKey"/>
+                        <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Attribute"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
     </owl:Class>
     
 
@@ -259,6 +263,20 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#composedAttributeType">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#AttributeType"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependent -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependent">
+        <datamodel:hasPartialKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#dependentName"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#dependentName -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#dependentName"/>
     
 
 
