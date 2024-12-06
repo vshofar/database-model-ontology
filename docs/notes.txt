@@ -12,3 +12,4 @@
     - in owl otherwise use declare partial keys using the relation 'hasPartialKey' and use it to infer weak entityes
     - it looks to be the better alternative to addres the initial requirement of using relations to declare facts ans infer class instances
 
+

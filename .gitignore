@@ -3,3 +3,4 @@ env/
 **/.vscode
 **/gradle
 __pycache__/
+.idea/
