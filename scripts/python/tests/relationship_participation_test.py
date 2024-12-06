@@ -18,34 +18,34 @@ class TestRelationshipParticipation(unittest.TestCase):
     def test_given_thing_hasParticipationEntity_thing_should_infer(self):
 
         employee = Thing("employee",self.onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", self.onto)
-        dependetsOfRelationshipParticipation.hasParticipationEntity.append(employee)
+        dependents_of_relationship_participation = Thing("dependetsOfRelationshipParticipation", self.onto)
+        dependents_of_relationship_participation.hasParticipationEntity.append(employee)
 
         sync_reasoner(self.onto)
 
-        self.assertIn(dependetsOfRelationshipParticipation, self.onto.RelationshipParticipation.instances())
+        self.assertIn(dependents_of_relationship_participation, self.onto.RelationshipParticipation.instances())
 
 
     def test_given_thing_hasParticipationCardinality_thing_should_infer(self):
 
         one = Thing("one",self.onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", self.onto)
-        dependetsOfRelationshipParticipation.hasParticipationCardinality.append(one)
+        dependents_of_relationship_participation = Thing("dependetsOfRelationshipParticipation", self.onto)
+        dependents_of_relationship_participation.hasParticipationCardinality.append(one)
 
         sync_reasoner(self.onto)
 
-        self.assertIn(dependetsOfRelationshipParticipation, self.onto.RelationshipParticipation.instances())              
+        self.assertIn(dependents_of_relationship_participation, self.onto.RelationshipParticipation.instances())
 
 
     def test_given_thing_hasParticipationLevel_thing_should_infer(self):
 
         total = Thing("total",self.onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", self.onto)
-        dependetsOfRelationshipParticipation.hasParticipationLevel.append(total)
+        dependents_of_relationship_participation = Thing("dependetsOfRelationshipParticipation", self.onto)
+        dependents_of_relationship_participation.hasParticipationLevel.append(total)
 
         sync_reasoner(self.onto)
 
-        self.assertIn(dependetsOfRelationshipParticipation, self.onto.RelationshipParticipation.instances())
+        self.assertIn(dependents_of_relationship_participation, self.onto.RelationshipParticipation.instances())
 
 
 
