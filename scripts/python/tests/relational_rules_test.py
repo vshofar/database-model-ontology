@@ -8,44 +8,37 @@ from owlready2 import Thing
 
 class TestRelationalRules(unittest.TestCase):
 
+    def setUp(self):
+        self.onto = load_ontology()
+        remove_all_individuals(self.onto, [self.onto.simpleAttributeType])
+
+    def tearDown(self):
+        self.onto.destroy()
+
     def test_given_some_entity_map_to_relation(self):
 
-        onto = load_ontology()
-
-        remove_all_individuals(onto, [onto.simpleAttributeType])
-        
-        employee = Thing("employee",onto)
-        gender = Thing("gender", onto)
+        employee = Thing("employee",self.onto)
+        gender = Thing("gender", self.onto)
         employee.hasAttribute.append(gender)
 
-        sync_reasoner()        
+        sync_reasoner(self.onto)
 
-        self.assertIn(employee, onto.Relation.instances())              
+        self.assertIn(employee, self.onto.Relation.instances())
 
     def test_given_some_entity_has_simple_attribute_map_it_to_attribute_relation(self):
 
-        onto = load_ontology()
-
-        remove_all_individuals(onto,[onto.simpleAttributeType])        
-        
-        employee = Thing("employee",onto)
-        gender = Thing("gender", onto)
-        simpleAttributeType = Thing("simpleAttributeType",onto)
+        employee = Thing("employee", self.onto)
+        gender = Thing("gender", self.onto)
 
         employee.hasAttribute.append(gender)
-        gender.hasAttributeType.append(simpleAttributeType)
+        gender.hasAttributeType.append(self.onto.simpleAttributeType)
 
-        sync_reasoner()        
+        sync_reasoner(self.onto)
 
-        self.assertIn(employee, onto.Relation.instances())              
-        self.assertIn(gender, onto.RelationAttribute.instances())              
-        self.assertIn(gender, employee.hasRelationAttribute)              
-        
+        self.assertIsInstance(employee,self.onto.Relation)
+        self.assertIsInstance(gender,self.onto.RelationAttribute)
+        self.assertIn(gender,employee.hasRelationAttribute)
 
-        
-
-if __name__ == '__main__':
-    unittest.main()
 
 
 

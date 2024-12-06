@@ -7,24 +7,24 @@ from owlready2 import Thing
 
 class TestRelationshipParticipation(unittest.TestCase):
 
+    def setUp(self):
+        self.onto = load_ontology()
+        remove_all_individuals(self.onto, [self.onto.simpleAttributeType])
+
+    def tearDown(self):
+        self.onto.destroy()
+        
     def test_given_thing_hasRelationshipParticipation_thing_should_infer(self):
 
-        onto = load_ontology()
-
-        remove_all_individuals(onto)        
-        
-        dependsOfRelationship = Thing("dependsOfRelationship",onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", onto)
+        dependsOfRelationship = Thing("dependsOfRelationship",self.onto)
+        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", self.onto)
         dependsOfRelationship.hasParticipation.append(dependetsOfRelationshipParticipation)
         
+        sync_reasoner()
 
-        sync_reasoner()        
-
-        self.assertIn(dependsOfRelationship, onto.Relationship.instances())
+        self.assertIn(dependsOfRelationship, self.onto.Relationship.instances())
 
 
-if __name__ == '__main__':
-    unittest.main()
 
 
 
