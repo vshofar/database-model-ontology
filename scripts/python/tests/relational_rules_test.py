@@ -1,7 +1,10 @@
 #!/usr/bin/env -S python -W "ignore"
 
-import unittest 
-from utils import *
+import unittest
+
+from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner
+from owlready2 import Thing
+
 
 class TestRelationalRules(unittest.TestCase):
 
@@ -9,9 +12,9 @@ class TestRelationalRules(unittest.TestCase):
 
         onto = load_ontology()
 
-        remove_all_individuals(onto)        
+        remove_all_individuals(onto, [onto.simpleAttributeType])
         
-        employee = Thing("employee",onto)        
+        employee = Thing("employee",onto)
         gender = Thing("gender", onto)
         employee.hasAttribute.append(gender)
 

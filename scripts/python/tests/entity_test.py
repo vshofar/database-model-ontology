@@ -1,11 +1,14 @@
 #!/usr/bin/env -S python -W "ignore"
 
-import unittest 
-from utils import *
+import unittest
+
+from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner
+from owlready2 import Thing
+
 
 class TestEntity(unittest.TestCase):
 
-    def test_given_thing_hasAttribute_thing_should_infer(self):
+    def test_given_thing_has_attribute_thing_should_infer(self):
 
         onto = load_ontology()
 
@@ -21,7 +24,7 @@ class TestEntity(unittest.TestCase):
         self.assertIn(employee, salary.isAttributeOf)        
         
 
-    def test_given_thing_haskey_thing_should_infer(self):
+    def test_given_thing_has_key_thing_should_infer(self):
 
         onto = load_ontology()
 

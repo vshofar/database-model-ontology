@@ -1,7 +1,9 @@
 #!/usr/bin/env -S python -W "ignore"
 
-import unittest 
-from utils import *
+import unittest
+
+from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner
+from owlready2 import Thing
 
 class TestRelationshipParticipation(unittest.TestCase):
 

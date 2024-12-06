@@ -1,9 +1,9 @@
 from owlready2 import *
 
 
-def remove_all_individuals(onto, expect=[]):
+def remove_all_individuals(onto, keep=[]):
     for i in list(onto.individuals()):
-        if i not in expect:
+        if i not in keep:
             destroy_entity(i)
 
 def print_all_individuals(onto):
@@ -17,3 +17,7 @@ def load_ontology():
 
 def sync_reasoner():
     sync_reasoner_pellet(infer_property_values = True, infer_data_property_values = True, debug = False)
+
+
+
+
