@@ -39,6 +39,19 @@ class TestRelationalRules(unittest.TestCase):
         self.assertIsInstance(gender,self.onto.RelationAttribute)
         self.assertIn(gender,employee.hasRelationAttribute)
 
+    def test_given_some_entity_has_key_map_it_to_primary_key_relation(self):
+
+        employee = Thing("employee", self.onto)
+        employee_ssn = Thing("employeeSSN", self.onto)
+
+        employee.hasKey.append(employee_ssn)
+
+        sync_reasoner(self.onto)
+
+        self.assertIsInstance(employee, self.onto.Relation)
+        self.assertIsInstance(employee_ssn, self.onto.RelationAttribute)
+        self.assertIn(employee_ssn, employee.hasPrimaryKey)
+
 
 
 
