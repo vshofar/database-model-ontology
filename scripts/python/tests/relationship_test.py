@@ -16,13 +16,13 @@ class TestRelationshipParticipation(unittest.TestCase):
         
     def test_given_thing_hasRelationshipParticipation_thing_should_infer(self):
 
-        dependsOfRelationship = Thing("dependsOfRelationship",self.onto)
-        dependetsOfRelationshipParticipation = Thing("dependetsOfRelationshipParticipation", self.onto)
-        dependsOfRelationship.hasParticipation.append(dependetsOfRelationshipParticipation)
+        depends_of_relationship = Thing("dependsOfRelationship",self.onto)
+        dependents_of_relationship_participation = Thing("dependentsOfRelationshipParticipation", self.onto)
+        depends_of_relationship.hasParticipation.append(dependents_of_relationship_participation)
         
         sync_reasoner()
 
-        self.assertIn(dependsOfRelationship, self.onto.Relationship.instances())
+        self.assertIn(depends_of_relationship, self.onto.Relationship.instances())
 
 
 

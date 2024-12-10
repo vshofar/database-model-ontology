@@ -44,28 +44,28 @@ class TestEntity(unittest.TestCase):
     def test_given_thing_hasPartialKey_thing_should_infer(self):
 
         dependent = Thing("dependent", self.onto)
-        dependentName = Thing("dependentName", self.onto)
-        dependent.hasPartialKey.append(dependentName)    
+        dependent_name = Thing("dependentName", self.onto)
+        dependent.hasPartialKey.append(dependent_name)
 
         sync_reasoner(self.onto)
 
         self.assertIsInstance(dependent, self.onto.Entity)
         self.assertIsInstance(dependent, self.onto.WeakEntity)
-        self.assertIn(dependent, dependentName.isAttributeOf)
-        self.assertIn(dependent, dependentName.isPartialKeyOf)
-        self.assertIn(dependentName, dependent.hasAttribute)         
+        self.assertIn(dependent, dependent_name.isAttributeOf)
+        self.assertIn(dependent, dependent_name.isPartialKeyOf)
+        self.assertIn(dependent_name, dependent.hasAttribute)
 
     def test_given_thing_isAttributeOf_thing_should_infer(self):
 
         dependent = Thing("dependent", self.onto)
-        dependentGender = Thing("dependentGender", self.onto)
-        dependentGender.isAttributeOf.append(dependent)    
+        dependent_gender = Thing("dependentGender", self.onto)
+        dependent_gender.isAttributeOf.append(dependent)
 
         sync_reasoner(self.onto)
 
         self.assertIsInstance(dependent, self.onto.Entity)
-        self.assertIsInstance(dependentGender, self.onto.Attribute)
-        self.assertIn(dependentGender, dependent.hasAttribute)
+        self.assertIsInstance(dependent_gender, self.onto.Attribute)
+        self.assertIn(dependent_gender, dependent.hasAttribute)
 
 
 
