@@ -1,5 +1,4 @@
 from owlready2 import *
-from random import random
 
 def remove_all_individuals(onto, keep=[]):
     for i in list(onto.individuals()):

@@ -12,4 +12,9 @@
     - in owl otherwise use declare partial keys using the relation 'hasPartialKey' and use it to infer weak entityes
     - it looks to be the better alternative to addres the initial requirement of using relations to declare facts ans infer class instances
 
+- not declaring tha two individuals are diferent can create duplicated axioms    
+- when executinig swrl reasonig, we must wonder that the facts must be considered as true before reasonig
+    - this way, some assertion can be evaluated as true, after execute reasoning more tha one time !!!
+- query ontolofy througn owlready api 2 afer run reasoner does not give the same result as query reasoner
+
 
