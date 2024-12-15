@@ -28,6 +28,7 @@ class OntologyQuery:
                 prop,
                 obj
             )
+
     def hasType(self, individual_name, individual_type):
         subject = individual(self.ontology, individual_name)
         t = onto_type(self.ontology, individual_type)

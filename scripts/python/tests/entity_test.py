@@ -24,13 +24,13 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_has_key_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("employee","hasKey","employeeSSN")
+        scenario = self._assert.object_property_assertion("employee","hasKey","ssn")
 
         q1 = self._query.hasType("employee", "Entity")
         q2 = self._query.hasType("employee", "StrongEntity")
-        q3 = self._query.hasPropertyValue("employeeSSN", "isAttributeOf", "employee")
-        q4 = self._query.hasPropertyValue("employeeSSN", "isKeyOf", "employee")
-        q5 = self._query.hasPropertyValue("employee", "hasAttribute", "employeeSSN")
+        q3 = self._query.hasPropertyValue("ssn", "isAttributeOf", "employee")
+        q4 = self._query.hasPropertyValue("ssn", "isKeyOf", "employee")
+        q5 = self._query.hasPropertyValue("employee", "hasAttribute", "ssn")
 
         self.assertTrue(scenario.evaluate(q1))
         self.assertTrue(scenario.evaluate(q2))
@@ -41,13 +41,13 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_hasPartialKey_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("dependent", "hasPartialKey", "dependentName")
+        scenario = self._assert.object_property_assertion("dependent", "hasPartialKey", "name")
 
         q1 = self._query.hasType("dependent", "Entity")
         q2 = self._query.hasType("dependent", "WeakEntity")
-        q3 = self._query.hasPropertyValue("dependentName", "isAttributeOf", "dependent")
-        q4 = self._query.hasPropertyValue("dependentName", "isPartialKeyOf", "dependent")
-        q5 = self._query.hasPropertyValue("dependent", "hasAttribute", "dependentName")
+        q3 = self._query.hasPropertyValue("name", "isAttributeOf", "dependent")
+        q4 = self._query.hasPropertyValue("name", "isPartialKeyOf", "dependent")
+        q5 = self._query.hasPropertyValue("dependent", "hasAttribute", "name")
 
         self.assertTrue(scenario.evaluate(q1))
         self.assertTrue(scenario.evaluate(q2))
@@ -58,11 +58,11 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_isAttributeOf_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("dependentGender", "isAttributeOf", "dependent")
+        scenario = self._assert.object_property_assertion("gender", "isAttributeOf", "dependent")
 
         q1 = self._query.hasType("dependent", "Entity")
-        q2 = self._query.hasType("dependentGender", "Attribute")
-        q3 = self._query.hasPropertyValue("dependent", "hasAttribute", "dependentGender")
+        q2 = self._query.hasType("gender", "Attribute")
+        q3 = self._query.hasPropertyValue("dependent", "hasAttribute", "gender")
 
         self.assertTrue(scenario.evaluate(q1))
         self.assertTrue(scenario.evaluate(q2))
