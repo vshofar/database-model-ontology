@@ -1,24 +1,26 @@
-from owlready2 import *
+from owlapy.iri import IRI
+from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom
+from owlapy.owl_individual import OWLNamedIndividual
+from owlapy.owl_property import OWLObjectProperty
 
-def remove_all_individuals(onto, keep=[]):
-    for i in list(onto.individuals()):
-        if i not in keep:
-            destroy_entity(i)
 
-def print_all_individuals(onto):
-    print("Print all individuals..")
-    for i in onto.individuals():
-        print(i)
+def remove_object_property_assertions(onto):
+    for a in onto.get_abox_axioms():
+        if type(a) == OWLObjectPropertyAssertionAxiom:
+            onto.remove_axiom(a)
 
-def load_ontology():
-    ontology_file = "/home/vbatista/estudo/ontologias/datamodel/owl/DataModel.owl"
-    onto = get_ontology(ontology_file).load()
+def get_ontology_namespace(onto):
+    return onto.get_ontology_id().get_ontology_iri().as_str()
 
-    return onto
+def individual(onto, individual_name):
+    ontology_namespace = get_ontology_namespace(onto)
+    individual = OWLNamedIndividual(IRI.create(ontology_namespace + "#" + individual_name))
 
-def sync_reasoner(onto=None):
-    sync_reasoner_pellet(x=onto, infer_property_values = True, infer_data_property_values = True, debug = False)
+    return individual
 
+def property(onto, property_name):
+    prop = OWLObjectProperty(IRI.create(get_ontology_namespace(onto) + "#" + property_name))
+    return prop
 
 
 

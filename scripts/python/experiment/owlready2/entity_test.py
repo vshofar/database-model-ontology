@@ -2,7 +2,7 @@
 
 import unittest
 
-from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner
+from python.experiment.owlready2.utils import load_ontology, remove_all_individuals, sync_reasoner
 from owlready2 import Thing
 
 
