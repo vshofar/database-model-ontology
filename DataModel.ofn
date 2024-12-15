@@ -1,0 +1,282 @@
+Prefix(:=<http://www.owl-ontologies.com/unnamed.owl#>)
+Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(xsp:=<http://www.owl-ontologies.com/2005/08/07/xsp.owl#>)
+Prefix(daml:=<http://www.daml.org/2001/03/daml+oil#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(swrl:=<http://www.w3.org/2003/11/swrl#>)
+Prefix(swrla:=<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#>)
+Prefix(swrlb:=<http://www.w3.org/2003/11/swrlb#>)
+Prefix(datamodel:=<http://www.owl-ontologies.com/datamodel.owl#>)
+
+
+Ontology(<http://www.owl-ontologies.com/datamodel.owl>
+
+Declaration(Class(datamodel:Attribute))
+Declaration(Class(datamodel:AttributeType))
+Declaration(Class(datamodel:ConceptualComponent))
+Declaration(Class(datamodel:Entity))
+Declaration(Class(datamodel:ParticipationCardinality))
+Declaration(Class(datamodel:ParticipationLevel))
+Declaration(Class(datamodel:Relation))
+Declaration(Class(datamodel:RelationAttribute))
+Declaration(Class(datamodel:RelationalComponent))
+Declaration(Class(datamodel:Relationship))
+Declaration(Class(datamodel:RelationshipParticipation))
+Declaration(Class(datamodel:StrongEntity))
+Declaration(Class(datamodel:WeakEntity))
+Declaration(ObjectProperty(datamodel:ConceptualComponentProperty))
+Declaration(ObjectProperty(datamodel:RelationalComponentProperty))
+Declaration(ObjectProperty(datamodel:hasAttribute))
+Declaration(ObjectProperty(datamodel:hasAttributeType))
+Declaration(ObjectProperty(datamodel:hasForeignKey))
+Declaration(ObjectProperty(datamodel:hasKey))
+Declaration(ObjectProperty(datamodel:hasPartialKey))
+Declaration(ObjectProperty(datamodel:hasParticipation))
+Declaration(ObjectProperty(datamodel:hasParticipationCardinality))
+Declaration(ObjectProperty(datamodel:hasParticipationEntity))
+Declaration(ObjectProperty(datamodel:hasParticipationLevel))
+Declaration(ObjectProperty(datamodel:hasPrimaryKey))
+Declaration(ObjectProperty(datamodel:hasRelationAttribute))
+Declaration(ObjectProperty(datamodel:hasRelationshipWith))
+Declaration(ObjectProperty(datamodel:isAttributeOf))
+Declaration(ObjectProperty(datamodel:isForeignKeyOf))
+Declaration(ObjectProperty(datamodel:isKeyOf))
+Declaration(ObjectProperty(datamodel:isPartialKeyOf))
+Declaration(ObjectProperty(datamodel:isParticipationEntityOf))
+Declaration(ObjectProperty(datamodel:isPrimaryKeyOf))
+Declaration(ObjectProperty(datamodel:isRelationAttributeOf))
+Declaration(NamedIndividual(datamodel:calculatedAttributeType))
+Declaration(NamedIndividual(datamodel:composedAttributeType))
+Declaration(NamedIndividual(datamodel:nParticipationCardinality))
+Declaration(NamedIndividual(datamodel:oneParticipationCardinality))
+Declaration(NamedIndividual(datamodel:partialParticipationLevel))
+Declaration(NamedIndividual(datamodel:simpleAttributeType))
+Declaration(NamedIndividual(datamodel:totalParticipationLevel))
+Declaration(AnnotationProperty(swrla:isRuleEnabled))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: datamodel:hasAttribute (datamodel:hasAttribute)
+
+SubObjectPropertyOf(datamodel:hasAttribute datamodel:ConceptualComponentProperty)
+InverseObjectProperties(datamodel:hasAttribute datamodel:isAttributeOf)
+ObjectPropertyDomain(datamodel:hasAttribute datamodel:Entity)
+ObjectPropertyRange(datamodel:hasAttribute datamodel:Attribute)
+DisjointObjectProperties(datamodel:hasAttribute datamodel:hasAttributeType)
+
+# Object Property: datamodel:hasAttributeType (datamodel:hasAttributeType)
+
+SubObjectPropertyOf(datamodel:hasAttributeType datamodel:ConceptualComponentProperty)
+ObjectPropertyDomain(datamodel:hasAttributeType datamodel:Attribute)
+ObjectPropertyRange(datamodel:hasAttributeType datamodel:AttributeType)
+
+# Object Property: datamodel:hasForeignKey (datamodel:hasForeignKey)
+
+SubObjectPropertyOf(datamodel:hasForeignKey datamodel:hasRelationAttribute)
+InverseObjectProperties(datamodel:hasForeignKey datamodel:isForeignKeyOf)
+DisjointObjectProperties(datamodel:hasForeignKey datamodel:hasPrimaryKey)
+
+# Object Property: datamodel:hasKey (datamodel:hasKey)
+
+SubObjectPropertyOf(datamodel:hasKey datamodel:hasAttribute)
+InverseObjectProperties(datamodel:hasKey datamodel:isKeyOf)
+ObjectPropertyDomain(datamodel:hasKey datamodel:Entity)
+ObjectPropertyRange(datamodel:hasKey datamodel:Attribute)
+DisjointObjectProperties(datamodel:hasKey datamodel:hasPartialKey)
+
+# Object Property: datamodel:hasPartialKey (datamodel:hasPartialKey)
+
+SubObjectPropertyOf(datamodel:hasPartialKey datamodel:hasAttribute)
+InverseObjectProperties(datamodel:hasPartialKey datamodel:isPartialKeyOf)
+ObjectPropertyDomain(datamodel:hasPartialKey datamodel:Entity)
+ObjectPropertyRange(datamodel:hasPartialKey datamodel:Attribute)
+
+# Object Property: datamodel:hasParticipation (datamodel:hasParticipation)
+
+SubObjectPropertyOf(datamodel:hasParticipation datamodel:ConceptualComponentProperty)
+ObjectPropertyDomain(datamodel:hasParticipation datamodel:Relationship)
+ObjectPropertyRange(datamodel:hasParticipation datamodel:RelationshipParticipation)
+
+# Object Property: datamodel:hasParticipationCardinality (datamodel:hasParticipationCardinality)
+
+SubObjectPropertyOf(datamodel:hasParticipationCardinality datamodel:ConceptualComponentProperty)
+ObjectPropertyDomain(datamodel:hasParticipationCardinality datamodel:RelationshipParticipation)
+ObjectPropertyRange(datamodel:hasParticipationCardinality datamodel:ParticipationCardinality)
+
+# Object Property: datamodel:hasParticipationEntity (datamodel:hasParticipationEntity)
+
+SubObjectPropertyOf(datamodel:hasParticipationEntity datamodel:ConceptualComponentProperty)
+InverseObjectProperties(datamodel:hasParticipationEntity datamodel:isParticipationEntityOf)
+ObjectPropertyDomain(datamodel:hasParticipationEntity datamodel:RelationshipParticipation)
+ObjectPropertyRange(datamodel:hasParticipationEntity datamodel:Entity)
+
+# Object Property: datamodel:hasParticipationLevel (datamodel:hasParticipationLevel)
+
+SubObjectPropertyOf(datamodel:hasParticipationLevel datamodel:ConceptualComponentProperty)
+ObjectPropertyDomain(datamodel:hasParticipationLevel datamodel:RelationshipParticipation)
+ObjectPropertyRange(datamodel:hasParticipationLevel datamodel:ParticipationLevel)
+
+# Object Property: datamodel:hasPrimaryKey (datamodel:hasPrimaryKey)
+
+SubObjectPropertyOf(datamodel:hasPrimaryKey datamodel:hasRelationAttribute)
+InverseObjectProperties(datamodel:hasPrimaryKey datamodel:isPrimaryKeyOf)
+
+# Object Property: datamodel:hasRelationAttribute (datamodel:hasRelationAttribute)
+
+SubObjectPropertyOf(datamodel:hasRelationAttribute datamodel:RelationalComponentProperty)
+InverseObjectProperties(datamodel:hasRelationAttribute datamodel:isRelationAttributeOf)
+ObjectPropertyDomain(datamodel:hasRelationAttribute datamodel:Relation)
+ObjectPropertyRange(datamodel:hasRelationAttribute datamodel:RelationAttribute)
+
+# Object Property: datamodel:hasRelationshipWith (datamodel:hasRelationshipWith)
+
+SubObjectPropertyOf(datamodel:hasRelationshipWith datamodel:ConceptualComponentProperty)
+ObjectPropertyDomain(datamodel:hasRelationshipWith datamodel:Entity)
+ObjectPropertyRange(datamodel:hasRelationshipWith datamodel:Entity)
+
+# Object Property: datamodel:isAttributeOf (datamodel:isAttributeOf)
+
+SubObjectPropertyOf(datamodel:isAttributeOf datamodel:ConceptualComponentProperty)
+
+# Object Property: datamodel:isForeignKeyOf (datamodel:isForeignKeyOf)
+
+SubObjectPropertyOf(datamodel:isForeignKeyOf datamodel:isRelationAttributeOf)
+DisjointObjectProperties(datamodel:isForeignKeyOf datamodel:isPrimaryKeyOf)
+
+# Object Property: datamodel:isKeyOf (datamodel:isKeyOf)
+
+SubObjectPropertyOf(datamodel:isKeyOf datamodel:isAttributeOf)
+
+# Object Property: datamodel:isPartialKeyOf (datamodel:isPartialKeyOf)
+
+SubObjectPropertyOf(datamodel:isPartialKeyOf datamodel:isAttributeOf)
+
+# Object Property: datamodel:isParticipationEntityOf (datamodel:isParticipationEntityOf)
+
+SubObjectPropertyOf(datamodel:isParticipationEntityOf datamodel:ConceptualComponentProperty)
+
+# Object Property: datamodel:isPrimaryKeyOf (datamodel:isPrimaryKeyOf)
+
+SubObjectPropertyOf(datamodel:isPrimaryKeyOf datamodel:isRelationAttributeOf)
+
+# Object Property: datamodel:isRelationAttributeOf (datamodel:isRelationAttributeOf)
+
+SubObjectPropertyOf(datamodel:isRelationAttributeOf datamodel:RelationalComponentProperty)
+ObjectPropertyDomain(datamodel:isRelationAttributeOf datamodel:RelationAttribute)
+ObjectPropertyRange(datamodel:isRelationAttributeOf datamodel:Relation)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: datamodel:Attribute (datamodel:Attribute)
+
+SubClassOf(datamodel:Attribute datamodel:ConceptualComponent)
+SubClassOf(datamodel:Attribute ObjectExactCardinality(1 datamodel:hasAttributeType datamodel:AttributeType))
+
+# Class: datamodel:AttributeType (datamodel:AttributeType)
+
+EquivalentClasses(datamodel:AttributeType ObjectOneOf(datamodel:calculatedAttributeType datamodel:composedAttributeType datamodel:simpleAttributeType))
+SubClassOf(datamodel:AttributeType datamodel:ConceptualComponent)
+
+# Class: datamodel:Entity (datamodel:Entity)
+
+SubClassOf(datamodel:Entity datamodel:ConceptualComponent)
+SubClassOf(datamodel:Entity ObjectUnionOf(ObjectSomeValuesFrom(datamodel:hasKey datamodel:Attribute) ObjectSomeValuesFrom(datamodel:hasPartialKey datamodel:Attribute)))
+SubClassOf(datamodel:Entity ObjectSomeValuesFrom(datamodel:hasAttribute datamodel:Attribute))
+
+# Class: datamodel:ParticipationCardinality (datamodel:ParticipationCardinality)
+
+EquivalentClasses(datamodel:ParticipationCardinality ObjectOneOf(datamodel:nParticipationCardinality datamodel:oneParticipationCardinality))
+SubClassOf(datamodel:ParticipationCardinality datamodel:ConceptualComponent)
+
+# Class: datamodel:ParticipationLevel (datamodel:ParticipationLevel)
+
+EquivalentClasses(datamodel:ParticipationLevel ObjectOneOf(datamodel:partialParticipationLevel datamodel:totalParticipationLevel))
+SubClassOf(datamodel:ParticipationLevel datamodel:ConceptualComponent)
+
+# Class: datamodel:Relation (datamodel:Relation)
+
+SubClassOf(datamodel:Relation datamodel:RelationalComponent)
+SubClassOf(datamodel:Relation ObjectSomeValuesFrom(datamodel:hasRelationAttribute datamodel:RelationAttribute))
+DisjointClasses(datamodel:Relation datamodel:RelationAttribute)
+
+# Class: datamodel:RelationAttribute (datamodel:RelationAttribute)
+
+SubClassOf(datamodel:RelationAttribute datamodel:RelationalComponent)
+SubClassOf(datamodel:RelationAttribute ObjectSomeValuesFrom(datamodel:isRelationAttributeOf datamodel:Relation))
+
+# Class: datamodel:Relationship (datamodel:Relationship)
+
+SubClassOf(datamodel:Relationship datamodel:ConceptualComponent)
+SubClassOf(datamodel:Relationship ObjectAllValuesFrom(datamodel:hasAttribute datamodel:Attribute))
+SubClassOf(datamodel:Relationship ObjectMinCardinality(2 datamodel:hasParticipation datamodel:RelationshipParticipation))
+SubClassOf(datamodel:Relationship ObjectMaxCardinality(4 datamodel:hasParticipation datamodel:RelationshipParticipation))
+
+# Class: datamodel:RelationshipParticipation (datamodel:RelationshipParticipation)
+
+SubClassOf(datamodel:RelationshipParticipation datamodel:ConceptualComponent)
+SubClassOf(datamodel:RelationshipParticipation ObjectExactCardinality(1 datamodel:hasParticipationCardinality datamodel:ParticipationCardinality))
+SubClassOf(datamodel:RelationshipParticipation ObjectExactCardinality(1 datamodel:hasParticipationEntity datamodel:Entity))
+SubClassOf(datamodel:RelationshipParticipation ObjectExactCardinality(1 datamodel:hasParticipationLevel datamodel:ParticipationLevel))
+
+# Class: datamodel:StrongEntity (datamodel:StrongEntity)
+
+EquivalentClasses(datamodel:StrongEntity ObjectIntersectionOf(datamodel:Entity ObjectSomeValuesFrom(datamodel:hasKey datamodel:Attribute)))
+DisjointClasses(datamodel:StrongEntity datamodel:WeakEntity)
+
+# Class: datamodel:WeakEntity (datamodel:WeakEntity)
+
+EquivalentClasses(datamodel:WeakEntity ObjectIntersectionOf(datamodel:Entity ObjectSomeValuesFrom(datamodel:hasPartialKey datamodel:Attribute)))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: datamodel:calculatedAttributeType (datamodel:calculatedAttributeType)
+
+ClassAssertion(datamodel:AttributeType datamodel:calculatedAttributeType)
+
+# Individual: datamodel:composedAttributeType (datamodel:composedAttributeType)
+
+ClassAssertion(datamodel:AttributeType datamodel:composedAttributeType)
+
+# Individual: datamodel:nParticipationCardinality (datamodel:nParticipationCardinality)
+
+ClassAssertion(datamodel:ParticipationCardinality datamodel:nParticipationCardinality)
+
+# Individual: datamodel:oneParticipationCardinality (datamodel:oneParticipationCardinality)
+
+ClassAssertion(datamodel:ParticipationCardinality datamodel:oneParticipationCardinality)
+
+# Individual: datamodel:partialParticipationLevel (datamodel:partialParticipationLevel)
+
+ClassAssertion(datamodel:ParticipationLevel datamodel:partialParticipationLevel)
+
+# Individual: datamodel:simpleAttributeType (datamodel:simpleAttributeType)
+
+ClassAssertion(datamodel:AttributeType datamodel:simpleAttributeType)
+
+# Individual: datamodel:totalParticipationLevel (datamodel:totalParticipationLevel)
+
+ClassAssertion(datamodel:ParticipationLevel datamodel:totalParticipationLevel)
+
+
+DisjointClasses(datamodel:Attribute datamodel:AttributeType datamodel:Entity datamodel:ParticipationCardinality datamodel:ParticipationLevel datamodel:Relationship)
+DisjointClasses(datamodel:Attribute datamodel:AttributeType datamodel:Entity datamodel:ParticipationCardinality datamodel:ParticipationLevel datamodel:Relationship datamodel:RelationshipParticipation)
+DisjointClasses(datamodel:Attribute datamodel:AttributeType datamodel:Entity datamodel:ParticipationLevel datamodel:Relationship)
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "Every Entity is a Relation") Annotation(rdfs:label "Map Entity to Relation") Body(ClassAtom(datamodel:Entity Variable(:x)))Head(ClassAtom(datamodel:Relation Variable(:x))))
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "Two Entities has a Realtionship bertween then when there is a Relationship with Relationship Participation when theu participate") Annotation(rdfs:label "Discover Relationships Between Entities") Body(ClassAtom(datamodel:Entity Variable(:x)) ClassAtom(datamodel:Entity Variable(:y)) DifferentIndividualsAtom(Variable(:x) Variable(:y)) ClassAtom(datamodel:Relationship Variable(:r)) ObjectPropertyAtom(datamodel:hasParticipation Variable(:r) Variable(:p1)) ObjectPropertyAtom(datamodel:hasParticipation Variable(:r) Variable(:p2)) ObjectPropertyAtom(datamodel:hasParticipationEntity Variable(:p1) Variable(:x)) ObjectPropertyAtom(datamodel:hasParticipationEntity Variable(:p2) Variable(:y)))Head(ObjectPropertyAtom(datamodel:hasRelationshipWith Variable(:x) Variable(:y))))
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "Given a Relationship between a Strong and a Weak Entity, the Primary Key of Strong Entity corresponds to a Foreign Key of corresponding Weak Entity Relation") Annotation(rdfs:label "Map Weak Relation Foreign Key") Body(ClassAtom(datamodel:StrongEntity Variable(:se)) ClassAtom(datamodel:WeakEntity Variable(:we)) ObjectPropertyAtom(datamodel:hasRelationshipWith Variable(:se) Variable(:we)) ObjectPropertyAtom(datamodel:isKeyOf Variable(:k) Variable(:se)))Head(ObjectPropertyAtom(datamodel:isForeignKeyOf Variable(:k) Variable(:we))))
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "Every Simple Attribute of Entity is also an Relation Attribute") Annotation(rdfs:label "Map Simple Entity Attributes to Relation Attributes") Body(ObjectPropertyAtom(datamodel:hasAttributeType Variable(:a) datamodel:simpleAttributeType) ObjectPropertyAtom(datamodel:isAttributeOf Variable(:a) Variable(:e)))Head(ObjectPropertyAtom(datamodel:hasRelationAttribute Variable(:e) Variable(:a))))
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "The Key of a Strong Entity is also its Primary Key on corresponding Relation") Annotation(rdfs:label "Map Relation Primary Key") Body(ObjectPropertyAtom(datamodel:isKeyOf Variable(:a) Variable(:e)))Head(ObjectPropertyAtom(datamodel:isPrimaryKeyOf Variable(:a) Variable(:e))))
+)

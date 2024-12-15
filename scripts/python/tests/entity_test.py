@@ -1,71 +1,73 @@
-#!/usr/bin/env -S python -W "ignore"
-
 import unittest
 
-from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner
-from owlready2 import Thing
-
+from python.experiment.owlapy.ontology_assert import OntologyAssert
+from python.experiment.owlapy.ontology_query import OntologyQuery
+from python.tests.utils import load_reasoner
 
 class TestEntity(unittest.TestCase):
 
     def setUp(self):
-        self.onto = load_ontology()
-        remove_all_individuals(self.onto)
-
-    def tearDown(self):
-        self.onto.destroy()
+        self.reasoner = load_reasoner("Pellet")
+        self._assert = OntologyAssert(self.reasoner)
+        self._query = OntologyQuery(self.reasoner.ontology)
 
     def test_given_thing_has_attribute_thing_should_infer(self):
 
-        employee = Thing("employee",self.onto)
-        salary = Thing("salary", self.onto)
-        employee.hasAttribute.append(salary)    
+        scenario = self._assert.object_property_assertion("employee","hasAttribute","salary")
 
-        sync_reasoner(self.onto)
+        q1 = self._query.hasPropertyValue("salary", "isAttributeOf", "employee")
+        q2 = self._query.hasType("salary", "Attribute")
 
-        self.assertIsInstance(salary, self.onto.Attribute)
-        self.assertIn(employee, salary.isAttributeOf)
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+
 
     def test_given_thing_has_key_thing_should_infer(self):
 
-        employee = Thing("employee",self.onto)
-        ssn = Thing("ssn", self.onto)
-        employee.hasKey.append(ssn)    
+        scenario = self._assert.object_property_assertion("employee","hasKey","ssn")
 
-        sync_reasoner(self.onto)
+        q1 = self._query.hasType("employee", "Entity")
+        q2 = self._query.hasType("employee", "StrongEntity")
+        q3 = self._query.hasPropertyValue("ssn", "isAttributeOf", "employee")
+        q4 = self._query.hasPropertyValue("ssn", "isKeyOf", "employee")
+        q5 = self._query.hasPropertyValue("employee", "hasAttribute", "ssn")
 
-        self.assertIsInstance(employee, self.onto.Entity)
-        self.assertIsInstance(employee, self.onto.StrongEntity)
-        self.assertIn(employee, ssn.isAttributeOf)
-        self.assertIn(employee, ssn.isKeyOf )
-        self.assertIn(ssn, employee.hasAttribute) 
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
+        self.assertTrue(scenario.evaluate(q4))
+        self.assertTrue(scenario.evaluate(q5))
 
 
     def test_given_thing_hasPartialKey_thing_should_infer(self):
 
-        dependent = Thing("dependent", self.onto)
-        dependent_name = Thing("dependentName", self.onto)
-        dependent.hasPartialKey.append(dependent_name)
+        scenario = self._assert.object_property_assertion("dependent", "hasPartialKey", "name")
 
-        sync_reasoner(self.onto)
+        q1 = self._query.hasType("dependent", "Entity")
+        q2 = self._query.hasType("dependent", "WeakEntity")
+        q3 = self._query.hasPropertyValue("name", "isAttributeOf", "dependent")
+        q4 = self._query.hasPropertyValue("name", "isPartialKeyOf", "dependent")
+        q5 = self._query.hasPropertyValue("dependent", "hasAttribute", "name")
 
-        self.assertIsInstance(dependent, self.onto.Entity)
-        self.assertIsInstance(dependent, self.onto.WeakEntity)
-        self.assertIn(dependent, dependent_name.isAttributeOf)
-        self.assertIn(dependent, dependent_name.isPartialKeyOf)
-        self.assertIn(dependent_name, dependent.hasAttribute)
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
+        self.assertTrue(scenario.evaluate(q4))
+        self.assertTrue(scenario.evaluate(q5))
+
 
     def test_given_thing_isAttributeOf_thing_should_infer(self):
 
-        dependent = Thing("dependent", self.onto)
-        dependent_gender = Thing("dependentGender", self.onto)
-        dependent_gender.isAttributeOf.append(dependent)
+        scenario = self._assert.object_property_assertion("gender", "isAttributeOf", "dependent")
 
-        sync_reasoner(self.onto)
+        q1 = self._query.hasType("dependent", "Entity")
+        q2 = self._query.hasType("gender", "Attribute")
+        q3 = self._query.hasPropertyValue("dependent", "hasAttribute", "gender")
 
-        self.assertIsInstance(dependent, self.onto.Entity)
-        self.assertIsInstance(dependent_gender, self.onto.Attribute)
-        self.assertIn(dependent_gender, dependent.hasAttribute)
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
+
 
 
 

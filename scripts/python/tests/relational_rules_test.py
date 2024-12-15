@@ -1,113 +1,101 @@
-#!/usr/bin/env -S python -W "ignore"
-
 import unittest
 
-from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner, get_base
-from owlready2 import Thing
+from python.experiment.owlapy.ontology_assert import OntologyAssert
+from python.experiment.owlapy.ontology_query import OntologyQuery
 
+from python.tests.utils import load_reasoner
 
 class TestRelationalRules(unittest.TestCase):
 
     def setUp(self):
-        self.onto = load_ontology()
-        remove_all_individuals(self.onto, [self.onto.simpleAttributeType])
-
-    def tearDown(self):
-        self.onto.destroy()
+        self.reasoner = load_reasoner("Pellet")
+        self._assert = OntologyAssert(self.reasoner)
+        self._query = OntologyQuery(self.reasoner.ontology)
 
     def test_given_some_entity_map_to_relation(self):
 
-        employee = Thing("employee",self.onto)
-        gender = Thing("gender", self.onto)
-        employee.hasAttribute.append(gender)
+        scenario = self._assert.object_property_assertion("employee", "hasAttribute", "gender")
 
-        sync_reasoner(self.onto)
+        q1 = self._query.hasType("employee", "Relation")
 
-        self.assertIn(employee, self.onto.Relation.instances())
+        self.assertTrue(scenario.evaluate(q1))
+
 
     def test_given_some_entity_has_simple_attribute_map_it_to_attribute_relation(self):
 
-        employee = Thing("employee", self.onto)
-        gender = Thing("gender", self.onto)
+        scenario = (
+            self._assert
+                .object_property_assertion("gender", "hasAttributeType", "simpleAttributeType")
+                .object_property_assertion("employee", "hasAttribute", "gender")
+            )
 
-        employee.hasAttribute.append(gender)
-        gender.hasAttributeType.append(self.onto.simpleAttributeType)
+        q1 = self._query.hasType("employee", "Relation")
+        q2 = self._query.hasType("gender", "RelationAttribute")
+        q3 = self._query.hasPropertyValue("employee", "hasRelationAttribute", "gender")
 
-        sync_reasoner(self.onto)
 
-        self.assertIsInstance(employee,self.onto.Relation)
-        self.assertIsInstance(gender,self.onto.RelationAttribute)
-        self.assertIn(gender,employee.hasRelationAttribute)
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
+
 
     def test_given_some_entity_has_key_map_it_to_primary_key_relation(self):
 
-        employee = Thing("employee", self.onto)
-        employee_ssn = Thing("employeeSSN", self.onto)
+        scenario = self._assert.object_property_assertion("employee", "hasKey", "ssn")
 
-        employee.hasKey.append(employee_ssn)
+        q1 = self._query.hasType("employee", "Relation")
+        q2 = self._query.hasType("ssn", "RelationAttribute")
+        q3 = self._query.hasPropertyValue("employee", "hasPrimaryKey", "ssn")
 
-        sync_reasoner(self.onto)
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
 
-        self.assertIsInstance(employee, self.onto.Relation)
-        self.assertIsInstance(employee_ssn, self.onto.RelationAttribute)
-        self.assertIn(employee_ssn, employee.hasPrimaryKey)
 
     def test_given_two_entities_participates_of_some_relation_through_relationship_participations_then_they_should_relate_to_each_other(self):
 
-        employee = Thing("employee", self.onto)
-        employee_ssn = Thing("employeeSSN", self.onto)
-        employee.hasKey.append(employee_ssn)
+        scenario = (
+            self._assert
+                .object_property_assertion("employee", "hasKey", "ssn")
+                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_assertion("dependent", "hasPartialKey", "name")
+                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+        )
 
-        depends_of_relationship = Thing("dependsOfRelationship", self.onto)
-        depends_of_employee_participation = Thing("dependsOfEmployeeParticipation", self.onto)
-        depends_of_employee_participation.hasParticipationEntity.append(employee)
-        depends_of_relationship.hasParticipation.append(depends_of_employee_participation)
 
-        dependent = Thing("dependent", self.onto)
-        dependent_name = Thing("dependentName", self.onto)
-        dependent.hasPartialKey.append(dependent_name)
+        q1 = self._query.hasType("dependent", "Entity")
+        q2 = self._query.hasType("dependsOf", "Relationship")
+        q3 = self._query.hasPropertyValue("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
 
-        depends_of_relationship = Thing("dependsOfRelationship", self.onto)
-        depends_of_dependent_participation = Thing("dependsOfDependentParticipation", self.onto)
-        depends_of_dependent_participation.hasParticipationEntity.append(dependent)
-        depends_of_relationship.hasParticipation.append(depends_of_dependent_participation)
+        q4 = self._query.hasType("employee", "Entity")
+        q5 = self._query.hasPropertyValue("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+        q6 = self._query.hasPropertyValue("dependent", "hasRelationshipWith", "employee")
 
-        sync_reasoner(self.onto)
-
-        self.assertIsInstance(dependent, self.onto.Entity)
-        self.assertIsInstance(depends_of_relationship, self.onto.Relationship)
-        self.assertIn(depends_of_dependent_participation, depends_of_relationship.hasParticipation)
-
-        self.assertIsInstance(employee, self.onto.Entity)
-        self.assertIsInstance(depends_of_relationship, self.onto.Relationship)
-        self.assertIn(depends_of_employee_participation, depends_of_relationship.hasParticipation)
-
-        self.assertIn(employee, dependent.hasRelationshipWith)
-
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
+        self.assertTrue(scenario.evaluate(q4))
+        self.assertTrue(scenario.evaluate(q5))
+        self.assertTrue(scenario.evaluate(q6))
 
 
     def test_given_relationship_between_strong_and_weak_entity_map_strong_primary_key_as_waeK_foreign_key(self):
-        employee = Thing("employee", self.onto)
-        employee_ssn = Thing("employeeSSN", self.onto)
-        employee.hasKey.append(employee_ssn)
 
-        depends_of_relationship = Thing("dependsOfRelationship", self.onto)
-        depends_of_employee_participation = Thing("dependsOfEmployeeParticipation", self.onto)
-        depends_of_employee_participation.hasParticipationEntity.append(employee)
-        depends_of_relationship.hasParticipation.append(depends_of_employee_participation)
+        scenario = (
+            self._assert
+                .object_property_assertion("employee", "hasKey", "ssn")
+                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+                .object_property_assertion("dependent", "hasPartialKey", "name")
+        )
 
-        dependent = Thing("dependent", self.onto)
-        dependent_name = Thing("dependentName", self.onto)
-        dependent.hasPartialKey.append(dependent_name)
+        q1 = self._query.hasPropertyValue("ssn", "isForeignKeyOf", "dependent")
 
-        depends_of_dependent_participation = Thing("dependsOfDependentParticipation", self.onto)
-        depends_of_dependent_participation.hasParticipationEntity.append(dependent)
-        depends_of_relationship.hasParticipation.append(depends_of_dependent_participation)
-
-        sync_reasoner(self.onto)
-        sync_reasoner(self.onto)
-
-        self.assertIn(dependent, employee_ssn.isForeignKeyOf)
+        self.assertTrue(scenario.evaluate(q1))
 
 
 

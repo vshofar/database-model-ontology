@@ -1,28 +1,27 @@
-#!/usr/bin/env -S python -W "ignore"
-
 import unittest
 
-from python.tests.utils import load_ontology, remove_all_individuals, sync_reasoner
-from owlready2 import Thing
+from python.experiment.owlapy.ontology_assert import OntologyAssert
+from python.experiment.owlapy.ontology_query import OntologyQuery
+
+from python.tests.utils import load_reasoner
 
 class TestRelationshipParticipation(unittest.TestCase):
 
     def setUp(self):
-        self.onto = load_ontology()
-        remove_all_individuals(self.onto, [self.onto.simpleAttributeType])
-
-    def tearDown(self):
-        self.onto.destroy()
+        self.reasoner = load_reasoner("Pellet")
+        self._assert = OntologyAssert(self.reasoner)
+        self._query = OntologyQuery(self.reasoner.ontology)
         
     def test_given_thing_hasRelationshipParticipation_thing_should_infer(self):
+        scenario = self._assert.object_property_assertion(
+            "dependsOfRelationship",
+            "hasParticipation",
+            "dependentsOfRelationshipParticipation"
+        )
 
-        depends_of_relationship = Thing("dependsOfRelationship",self.onto)
-        dependents_of_relationship_participation = Thing("dependentsOfRelationshipParticipation", self.onto)
-        depends_of_relationship.hasParticipation.append(dependents_of_relationship_participation)
+        q1 = self._query.hasType("dependsOfRelationship", "Relationship")
         
-        sync_reasoner()
-
-        self.assertIn(depends_of_relationship, self.onto.Relationship.instances())
+        self.assertTrue(scenario.evaluate(q1))
 
 
 
