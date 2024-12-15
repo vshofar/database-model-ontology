@@ -1,5 +1,4 @@
 from owlapy.owl_reasoner import SyncReasoner
-
 from ontology_query import OntologyQuery
 from ontology_assert import OntologyAssert
 
@@ -7,7 +6,7 @@ ontology_path = "/home/vbatista/estudo/ontologias/datamodel/owl/DataModel.owl"
 reasoner = SyncReasoner(ontology=ontology_path, reasoner="HermiT")
 
 ontology_assert = OntologyAssert(reasoner)
-ontology_question = OntologyQuery(reasoner.ontology)
+ontology_query = OntologyQuery(reasoner.ontology)
 
 scenario = (
     ontology_assert
@@ -19,9 +18,36 @@ scenario = (
         .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
 )
 
-question = ontology_question.object_property_question("employeeSSN", "isForeignKeyOf", "dependent")
+query = ontology_query.hasPropertyValue("employeeSSN", "isForeignKeyOf", "dependent")
+assert(scenario.evaluate(query) == True)
 
-print(scenario.evaluate(question))
+ontology_assert.clear()
+
+scenario = (
+    ontology_assert
+        .object_property_assertion(
+            "employee",
+            "hasAttribute",
+            "employeeGender"
+        )
+)
+
+query = ontology_query.hasPropertyValue(
+    "employeeGender",
+    "isAttributeOf",
+    "employee"
+)
+
+assert(scenario.evaluate(query) == True)
+
+
+
+
+
+
+
+
+
 
 
 
