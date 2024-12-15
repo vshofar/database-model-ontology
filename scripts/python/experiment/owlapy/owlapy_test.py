@@ -1,7 +1,7 @@
 from owlapy.owl_reasoner import SyncReasoner
 
-from python.tests.ontology_query import OntologyQuery
-from python.tests.ontology_assert import OntologyAssert
+from ontology_query import OntologyQuery
+from ontology_assert import OntologyAssert
 
 ontology_path = "/home/vbatista/estudo/ontologias/datamodel/owl/DataModel.owl"
 reasoner = SyncReasoner(ontology=ontology_path, reasoner="HermiT")

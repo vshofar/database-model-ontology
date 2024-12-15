@@ -3,7 +3,7 @@ from owlapy.owl_individual import OWLNamedIndividual
 from owlapy.owl_property import OWLObjectProperty
 from owlapy.owl_reasoner import SyncReasoner
 
-from python.tests.utils import individual, property
+from utils import individual, property
 
 
 class OntologyAssert:
