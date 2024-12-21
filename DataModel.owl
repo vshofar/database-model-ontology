@@ -183,6 +183,15 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWithWeakEntity -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWithWeakEntity">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWith"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#isAttributeOf -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isAttributeOf">
@@ -620,14 +629,48 @@
     <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#we">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#k">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
     <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#a">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
     <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#e">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#k">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment>The Key of a Strong Entity is also its Primary Key on corresponding Relation</rdfs:comment>
+        <rdfs:label>Map Relation Primary Key</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isKeyOf"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#a"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#e"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isPrimaryKeyOf"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#a"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#e"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
@@ -784,8 +827,8 @@
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment>Given a Relationship between a Strong and a Weak Entity, the Primary Key of Strong Entity corresponds to a Foreign Key of corresponding Weak Entity Relation</rdfs:comment>
-        <rdfs:label>Map Weak Relation Foreign Key</rdfs:label>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Ma Relationship between Strong and Weak Entity</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -818,20 +861,7 @@
                                         <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
                                     </rdf:Description>
                                 </rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isKeyOf"/>
-                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
-                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                    </rdf:Description>
-                                </rdf:rest>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                             </rdf:Description>
                         </rdf:rest>
                     </rdf:Description>
@@ -844,8 +874,8 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isForeignKeyOf"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWithWeakEntity"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
                         <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
                     </rdf:Description>
                 </rdf:first>
@@ -902,8 +932,8 @@
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment>The Key of a Strong Entity is also its Primary Key on corresponding Relation</rdfs:comment>
-        <rdfs:label>Map Relation Primary Key</rdfs:label>
+        <rdfs:comment>Given a Relationship between a Strong and a Weak Entity, the Primary Key of Strong Entity corresponds to a Foreign Key of corresponding Weak Entity Relation</rdfs:comment>
+        <rdfs:label>Map Weak Relation Foreign Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -911,12 +941,25 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isKeyOf"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#a"/>
-                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#e"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWithWeakEntity"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
                     </rdf:Description>
                 </rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isKeyOf"/>
+                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
             </rdf:Description>
         </swrl:body>
         <swrl:head>
@@ -925,9 +968,9 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isPrimaryKeyOf"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#a"/>
-                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#e"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isForeignKeyOf"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>

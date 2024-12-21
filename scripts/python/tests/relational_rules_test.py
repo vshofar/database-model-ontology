@@ -80,6 +80,21 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q5))
         self.assertTrue(scenario.evaluate(q6))
 
+    def test_given_string_and_weak_entity_participates_of_some_relation_through_relationship_participations_then_they_should_relate_to_each_other(
+            self):
+        scenario = (
+            self._assert
+            .object_property_assertion("employee", "hasKey", "ssn")
+            .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_assertion("dependent", "hasPartialKey", "name")
+            .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+        )
+
+        q1 = self._query.hasPropertyValue("employee", "hasRelationshipWithWeakEntity", "dependent")
+
+        self.assertTrue(scenario.evaluate(q1))
 
     def test_given_relationship_between_strong_and_weak_entity_map_strong_primary_key_as_waeK_foreign_key(self):
 
