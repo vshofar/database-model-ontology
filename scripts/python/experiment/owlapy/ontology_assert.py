@@ -1,4 +1,4 @@
-from owlapy.class_expression import OWLClass
+from owlapy.class_expression import OWLClass, OWLClassExpression
 from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom, OWLAxiom, OWLClassAssertionAxiom
 from owlapy.owl_individual import OWLNamedIndividual
 from owlapy.owl_property import OWLObjectProperty
@@ -45,6 +45,10 @@ class OntologyAssert:
     def evaluate(self, axiom: OWLAxiom):
         internal_reasoner = SyncReasoner(self.reasoner.ontology, "HermiT")
         return internal_reasoner.is_entailed(axiom)
+
+    def search(self, class_expression: OWLClassExpression):
+        internal_reasoner = SyncReasoner(self.reasoner.ontology, "HermiT")
+        return internal_reasoner.instances(class_expression)
 
 
     

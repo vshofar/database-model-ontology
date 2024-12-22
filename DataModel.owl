@@ -175,6 +175,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasReferenceParticipationRelation">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationalComponentProperty"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationRelationOf"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ReferenceParticipation"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
     </owl:ObjectProperty>
@@ -185,6 +186,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasReferenceParticipationRelationAttribute">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationalComponentProperty"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationRelationAttributeOf"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ReferenceParticipation"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationAttribute"/>
     </owl:ObjectProperty>
@@ -195,6 +197,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasReferenceParticipationSide">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationalComponentProperty"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationSideOf"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ReferenceParticipation"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ReferenceParticipationSide"/>
     </owl:ObjectProperty>
@@ -284,6 +287,30 @@
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isPrimaryKeyOf">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#isRelationAttributeOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationRelationAttributeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationRelationAttributeOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationalComponentProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationRelationOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationRelationOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationalComponentProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationSideOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#isReferenceParticipationSideOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationalComponentProperty"/>
     </owl:ObjectProperty>
     
 

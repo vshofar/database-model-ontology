@@ -1,7 +1,11 @@
 import unittest
 
+from funowl import ClassAxiom
+from owlapy.class_expression import OWLClassExpression, OWLClass, OWLObjectSomeValuesFrom
+
 from python.experiment.owlapy.ontology_assert import OntologyAssert
 from python.experiment.owlapy.ontology_query import OntologyQuery
+from python.experiment.owlapy.utils import print_query_result, print_ident
 
 from python.tests.utils import load_reasoner
 
@@ -193,6 +197,66 @@ class TestRelationalRules(unittest.TestCase):
         q1 = self._query.hasPropertyValue("dependent", "hasComposedKeyComponent", "name")
 
         self.assertTrue(scenario.evaluate(q1))
+
+
+    def test_given_relationship_between_strong_and_weak_entity_infer(self):
+        scenario = (
+            self._assert
+            .object_property_assertion("employee", "hasKey", "ssn")
+            .object_property_assertion("employee", "hasAttribute", "employee_name")
+                .object_property_assertion("employee_name", "hasAttributeType", "simpleAttributeType")
+            .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_assertion("dependent", "hasPartialKey", "name")
+            .object_property_assertion("dependent", "hasAttribute", "age")
+                .object_property_assertion("age", "hasAttributeType", "simpleAttributeType")
+            .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+
+        )
+
+        c = self._query.someClass("Relation")
+        relations = scenario.search(c)
+
+        print()
+        for r in relations:
+            print()
+            print_ident("Relation = {relation}".format(relation=r.reminder), 0)
+
+            print_ident("RelationAttributes...", 1)
+            c = self._query.object_has_value("isRelationAttributeOf", r.reminder)
+            attributes_of = scenario.search(c)
+            print_query_result(attributes_of, only_name=True, ident=2)
+
+            print_ident("PrimaryKey...", 1)
+            c = self._query.object_has_value("isPrimaryKeyOf", r.reminder)
+            primary_key_of = scenario.search(c)
+            print_query_result(primary_key_of, only_name=True, ident=2)
+
+            print_ident("ForeignKey...", 1)
+            c = self._query.object_has_value("isForeignKeyOf", r.reminder)
+            foreign_key_of = scenario.search(c)
+            print_query_result(foreign_key_of, only_name=True, ident=2)
+
+            print_ident("ComposedKey...", 1)
+            c = self._query.object_has_value("isComposedKeyComponentOf", r.reminder)
+            composed_key_of = scenario.search(c)
+            print_query_result(composed_key_of, only_name=True, ident=2)
+
+            print_ident("References...", 1)
+            c = self._query.object_has_value("hasReferenceParticipationRelation", r.reminder)
+            reference_participations = scenario.search(c)
+
+            for rp in reference_participations:
+                print_ident(rp.reminder, 2)
+                c = self._query.object_has_value("isReferenceParticipationRelationAttributeOf", rp.reminder)
+                participation_relation_attribute = scenario.search(c)
+                print_query_result(participation_relation_attribute, only_name=True, ident=3)
+
+                c = self._query.object_has_value("isReferenceParticipationSideOf", rp.reminder)
+                reference_participation_side = scenario.search(c)
+                print_query_result(reference_participation_side, only_name=True, ident=3)
+
 
 
 
