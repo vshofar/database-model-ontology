@@ -161,6 +161,41 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q4))
 
 
+    def test_given_weak_mapped_relation_with_foreign_key_map_foreign_key_as_composed_key_component(self):
+
+        scenario = (
+            self._assert
+                .object_property_assertion("employee", "hasKey", "ssn")
+                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_assertion("dependent", "hasPartialKey", "name")
+                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+
+        )
+
+        q1 = self._query.hasPropertyValue("dependent", "hasComposedKeyComponent", "ssn")
+
+        self.assertTrue(scenario.evaluate(q1))
+
+    def test_given_weak_mapped_relation_with_partial_key_map_partial_key_as_composed_key_component(self):
+        scenario = (
+            self._assert
+            .object_property_assertion("employee", "hasKey", "ssn")
+            .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_assertion("dependent", "hasPartialKey", "name")
+            .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+
+        )
+
+        q1 = self._query.hasPropertyValue("dependent", "hasComposedKeyComponent", "name")
+
+        self.assertTrue(scenario.evaluate(q1))
+
+
+
 
 
 
