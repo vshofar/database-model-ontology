@@ -1,10 +1,11 @@
 from owlapy.class_expression import OWLClass
-from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom, OWLAxiom, OWLClassAssertionAxiom
+from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom, OWLClassAssertionAxiom
 from owlapy.owl_individual import OWLNamedIndividual
 from owlapy.owl_ontology import Ontology
 from owlapy.owl_property import OWLObjectProperty
 
-from python.experiment.owlapy.utils import individual, property, onto_type
+from python.experiment.owlapy.utils import individual, property, onto_type, some_class, object_some_values_from, \
+    object_has_value
 
 
 class OntologyQuery:
@@ -40,6 +41,15 @@ class OntologyQuery:
                 sub,
                 t
             )
+
+    def someClass(self, class_name):
+        return some_class(self.ontology, class_name)
+
+    def object_some_values_from(self, property_name, class_name):
+        return object_some_values_from(self.ontology, property_name, class_name)
+
+    def object_has_value(self, property_name, individual_name):
+        return object_has_value(self.ontology, property_name, individual_name)
 
 
 
