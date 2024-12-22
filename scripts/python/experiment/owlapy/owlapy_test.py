@@ -3,7 +3,7 @@ from ontology_query import OntologyQuery
 from ontology_assert import OntologyAssert
 
 ontology_path = "/home/vbatista/estudo/ontologias/datamodel/owl/DataModel.owl"
-reasoner = SyncReasoner(ontology=ontology_path, reasoner="HermiT")
+reasoner = SyncReasoner(ontology=ontology_path, reasoner="Pellet")
 
 ontology_assert = OntologyAssert(reasoner)
 ontology_query = OntologyQuery(reasoner.ontology)
