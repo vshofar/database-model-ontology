@@ -128,7 +128,6 @@ class TestRelationalRules(unittest.TestCase):
             .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
             .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
             .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-
         )
 
         c = self._query.someClass("Relation")

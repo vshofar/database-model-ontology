@@ -1,5 +1,6 @@
 from owlapy.class_expression import OWLClass, OWLClassExpression
-from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom, OWLAxiom, OWLClassAssertionAxiom
+from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom, OWLAxiom, OWLClassAssertionAxiom, \
+    OWLDifferentIndividualsAxiom
 from owlapy.owl_individual import OWLNamedIndividual
 from owlapy.owl_property import OWLObjectProperty
 from owlapy.owl_reasoner import SyncReasoner
@@ -34,12 +35,28 @@ class OntologyAssert:
         return self
 
     def _object_property_assertion(self, sub: OWLNamedIndividual, prop: OWLObjectProperty, obj: OWLNamedIndividual):
-        self.reasoner.ontology.add_axiom(
+        self._add_axiom(
             OWLObjectPropertyAssertionAxiom(
                 sub,
                 prop,
                 obj
             )
+        )
+
+    def different_of_assertion(self, individual_names):
+        onto = self.reasoner.ontology
+        individuals = []
+
+        for name in individual_names:
+            individuals.append(individual(onto, name))
+
+        self._different_of_assertion(individuals)
+
+        return self
+
+    def _different_of_assertion(self, individuals):
+        self._add_axiom(
+            OWLDifferentIndividualsAxiom(individuals)
         )
 
     def evaluate(self, axiom: OWLAxiom):
