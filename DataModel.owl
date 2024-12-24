@@ -410,6 +410,40 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#OneToManyRelationship -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneToManyRelationship">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
+                                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#manyParticipationCardinality"/>
+                            </owl:Restriction>
+                        </owl:onClass>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
+                                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
+                            </owl:Restriction>
+                        </owl:onClass>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#OneToOneRelationship -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneToOneRelationship">
@@ -436,7 +470,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#manyParticipationCardinality"/>
                     <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
                 </owl:oneOf>
             </owl:Class>
@@ -663,10 +697,11 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality -->
+    <!-- http://www.owl-ontologies.com/datamodel.owl#manyParticipationCardinality -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#nParticipationCardinality">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#manyParticipationCardinality">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationCardinality"/>
+        <owl:differentFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
     </owl:NamedIndividual>
     
 
@@ -685,10 +720,42 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#p1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#p1"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#p2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#p2"/>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#r1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#r1">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#p1"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#p2"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -816,6 +883,64 @@
     </rdf:Description>
     <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#pk">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment>Given relationship between Strong and Wean Entitites, map this relation on hasRelationshipWithWeakEntity</rdfs:comment>
+        <rdfs:label>B2 - Map Relationship between Strong and Weak Entity</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#StrongEntity"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
+                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWith"/>
+                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
+                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWithWeakEntity"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
@@ -1426,64 +1551,6 @@
                         <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWith"/>
                         <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#x"/>
                         <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#y"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment>Given relationship between Strong and Wean Entitites, map this relation on hasRelationshipWithWeakEntity</rdfs:comment>
-        <rdfs:label>B2 - Map Relationship between Strong and Weak Entity</rdfs:label>
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#StrongEntity"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#WeakEntity"/>
-                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
-                            </rdf:Description>
-                        </rdf:first>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWith"/>
-                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
-                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                            </rdf:Description>
-                        </rdf:rest>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasRelationshipWithWeakEntity"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#se"/>
-                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#we"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>

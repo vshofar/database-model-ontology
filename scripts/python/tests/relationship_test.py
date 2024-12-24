@@ -42,6 +42,25 @@ class TestRelationshipParticipation(unittest.TestCase):
 
         self.assertTrue(scenario.evaluate(q1))
 
+    def test_a_relationship_with_one_to_many_cardinality_should_infer(self):
+        scenario = (
+            self._assert
+            .object_property_value("employee", "hasKey", "ssn")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
+            .object_property_value("dependent", "hasPartialKey", "name")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationCardinality", "manyParticipationCardinality")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .restrict_relation_to_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation","dependsOfDependentParticipation"])
+
+        )
+
+        q1 = self._query.hasType("dependsOf", "OneToManyRelationship")
+
+        self.assertTrue(scenario.evaluate(q1))
+
 
 
 
