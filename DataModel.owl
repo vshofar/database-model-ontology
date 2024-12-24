@@ -800,7 +800,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment></rdfs:comment>
-        <rdfs:label>9 - Map Weak mapped Relation Foreign Key as Composed Key</rdfs:label>
+        <rdfs:label>C6 - Map Weak mapped Relation Foreign Key as Composed Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -846,7 +846,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment></rdfs:comment>
-        <rdfs:label>11 - 9 - Map Weak mapped Relation Partial Key as Composed Key</rdfs:label>
+        <rdfs:label>C5 - Map Weak mapped Relation Partial Key as Composed Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -892,7 +892,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Every Simple Attribute of Entity is also an Relation Attribute</rdfs:comment>
-        <rdfs:label>2 - Map Simple Entity Attributes to Relation Attributes</rdfs:label>
+        <rdfs:label>A2 - Map Simple Entity Attributes to Relation Attributes</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -939,7 +939,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Given a Relationship between a Strong and a Weak Entity, the Primary Key of Strong Entity corresponds to a Foreign Key of corresponding Weak Entity Relation</rdfs:comment>
-        <rdfs:label>6 - Map Weak Relation Foreign Key</rdfs:label>
+        <rdfs:label>C1 - Map Weak Relation Foreign Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -986,7 +986,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Given a Relationship between a Strong and a Weak Entity, the Primary Key of Strong Entity there is a ReferenceParticipation corresponding to Strong Entity Relation</rdfs:comment>
-        <rdfs:label>8 - Map Reference Participation Target for Relationship between Strong and Weak Entity</rdfs:label>
+        <rdfs:label>C3 - Map Reference Participation Target for Relationship between Strong and Weak Entity</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -1084,7 +1084,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Given a Relationship between a Strong and a Weak Entity, the Primary Key of Strong Entity there is a ReferenceParticipation corresponding to Weak Entity Relation</rdfs:comment>
-        <rdfs:label>7 - Map Reference Participation Origin for Relationship between Strong and Weak Entity</rdfs:label>
+        <rdfs:label>C2 - Map Reference Participation Origin for Relationship between Strong and Weak Entity</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -1182,7 +1182,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>The Key of a Strong Entity is also its Primary Key on corresponding Relation</rdfs:comment>
-        <rdfs:label>3 - Map Relation Primary Key</rdfs:label>
+        <rdfs:label>A3 - Map Relation Primary Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -1216,7 +1216,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Every Entity is a Relation</rdfs:comment>
-        <rdfs:label>1 - Map Entity to Relation</rdfs:label>
+        <rdfs:label>A1 - Map Entity to Relation</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -1248,7 +1248,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Two Entities has a Realtionship bertween then when there is a Relationship with Relationship Participation when theu participate</rdfs:comment>
-        <rdfs:label>4 - Discover Relationships Between Entities</rdfs:label>
+        <rdfs:label>B1 - Discover Relationships Between Entities</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -1369,7 +1369,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Given relationship between Strong and Wean Entitites, map this relation on hasRelationshipWithWeakEntity</rdfs:comment>
-        <rdfs:label>5 - Map Relationship between Strong and Weak Entity</rdfs:label>
+        <rdfs:label>B2 - Map Relationship between Strong and Weak Entity</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -1427,7 +1427,7 @@
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment></rdfs:comment>
-        <rdfs:label>10 - Map Weak mapped Relation Foreign Key as Composed Key</rdfs:label>
+        <rdfs:label>C4 - Map Weak mapped Relation Foreign Key as Composed Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
