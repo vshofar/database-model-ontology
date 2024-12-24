@@ -14,7 +14,7 @@ class TestRelationshipParticipation(unittest.TestCase):
     
     def test_given_thing_hasParticipationEntity_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion(
+        scenario = self._assert.object_property_value(
             "dependentsOfRelationshipParticipation",
             "hasParticipationEntity",
             "employee"
@@ -27,7 +27,7 @@ class TestRelationshipParticipation(unittest.TestCase):
 
     def test_given_thing_hasParticipationCardinality_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion(
+        scenario = self._assert.object_property_value(
             "dependentsOfRelationshipParticipation",
             "hasParticipationCardinality",
             "one"
@@ -40,7 +40,7 @@ class TestRelationshipParticipation(unittest.TestCase):
 
     def test_given_thing_hasParticipationLevel_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion(
+        scenario = self._assert.object_property_value(
             "dependentsOfRelationshipParticipation",
             "hasParticipationLevel",
             "total"

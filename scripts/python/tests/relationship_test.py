@@ -13,7 +13,7 @@ class TestRelationshipParticipation(unittest.TestCase):
         self._query = OntologyQuery(self.reasoner.ontology)
         
     def test_given_thing_hasRelationshipParticipation_thing_should_infer(self):
-        scenario = self._assert.object_property_assertion(
+        scenario = self._assert.object_property_value(
             "dependsOfRelationship",
             "hasParticipation",
             "dependentsOfRelationshipParticipation"
@@ -26,15 +26,15 @@ class TestRelationshipParticipation(unittest.TestCase):
     def test_a_relationship_with_one_to_one_cardinality_should_infer(self):
         scenario = (
             self._assert
-            .object_property_assertion("employee", "hasKey", "ssn")
-                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
-            .object_property_assertion("dependent", "hasPartialKey", "name")
-                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
-            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-            .different_of_assertion(["dependsOfDependentParticipation","dependsOfEmployeeParticipation"])
+            .object_property_value("employee", "hasKey", "ssn")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
+            .object_property_value("dependent", "hasPartialKey", "name")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .restrict_relation_to_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation","dependsOfDependentParticipation"])
 
         )
 

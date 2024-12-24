@@ -1,4 +1,5 @@
-from owlapy.class_expression import OWLClass, OWLClassExpression
+from owlapy.class_expression import OWLClass, OWLClassExpression, OWLObjectSomeValuesFrom, OWLObjectAllValuesFrom, \
+    OWLObjectOneOf
 from owlapy.owl_axiom import OWLObjectPropertyAssertionAxiom, OWLAxiom, OWLClassAssertionAxiom, \
     OWLDifferentIndividualsAxiom
 from owlapy.owl_individual import OWLNamedIndividual
@@ -24,17 +25,43 @@ class OntologyAssert:
     def _add_axiom(self, axiom: OWLAxiom):
         self.reasoner.ontology.add_axiom(axiom)
 
-    def object_property_assertion(self, sub, prop, obj):
+    def restrict_relation_to_individuals(self, sub, prop, individual_names):
+        onto = self.reasoner.ontology
+        _sub = individual(onto, sub)
+        _prop = property(onto, prop)
+
+        individuals = []
+        for name in individual_names:
+            individuals.append(individual(onto, name))
+
+        _clas = OWLObjectAllValuesFrom(
+            _prop,
+            OWLObjectOneOf(individuals)
+        )
+
+        self._class_assertion(_sub, _clas)
+
+        return self
+
+    def _class_assertion(self, sub: OWLNamedIndividual, clas: OWLClassExpression):
+        self._add_axiom(
+            OWLClassAssertionAxiom(
+                sub,
+                clas
+            )
+        )
+
+    def object_property_value(self, sub, prop, obj):
         onto = self.reasoner.ontology
         _sub = individual(onto, sub)
         _prop = property(onto, prop)
         _obj = individual(onto, obj)
 
-        self._object_property_assertion(_sub, _prop, _obj)
+        self._object_property_value_assertion(_sub, _prop, _obj)
 
         return self
 
-    def _object_property_assertion(self, sub: OWLNamedIndividual, prop: OWLObjectProperty, obj: OWLNamedIndividual):
+    def _object_property_value_assertion(self, sub: OWLNamedIndividual, prop: OWLObjectProperty, obj: OWLNamedIndividual):
         self._add_axiom(
             OWLObjectPropertyAssertionAxiom(
                 sub,
@@ -43,7 +70,7 @@ class OntologyAssert:
             )
         )
 
-    def different_of_assertion(self, individual_names):
+    def different_of(self, individual_names):
         onto = self.reasoner.ontology
         individuals = []
 

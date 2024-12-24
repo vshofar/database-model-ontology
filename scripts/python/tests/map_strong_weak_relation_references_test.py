@@ -20,12 +20,12 @@ class TestRelationalRules(unittest.TestCase):
 
         scenario = (
             self._assert
-                .object_property_assertion("employee", "hasKey", "ssn")
-                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-                .object_property_assertion("dependent", "hasPartialKey", "name")
+                .object_property_value("employee", "hasKey", "ssn")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+                .object_property_value("dependent", "hasPartialKey", "name")
         )
 
         q1 = self._query.hasPropertyValue("ssn", "isForeignKeyOf", "dependent")
@@ -36,12 +36,12 @@ class TestRelationalRules(unittest.TestCase):
 
         scenario = (
             self._assert
-                .object_property_assertion("employee", "hasKey", "ssn")
-                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_assertion("dependent", "hasPartialKey", "name")
-                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+                .object_property_value("employee", "hasKey", "ssn")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_value("dependent", "hasPartialKey", "name")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
 
         )
 
@@ -60,12 +60,12 @@ class TestRelationalRules(unittest.TestCase):
 
         scenario = (
             self._assert
-                .object_property_assertion("employee", "hasKey", "ssn")
-                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_assertion("dependent", "hasPartialKey", "name")
-                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+                .object_property_value("employee", "hasKey", "ssn")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_value("dependent", "hasPartialKey", "name")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
 
         )
 
@@ -85,12 +85,12 @@ class TestRelationalRules(unittest.TestCase):
 
         scenario = (
             self._assert
-                .object_property_assertion("employee", "hasKey", "ssn")
-                .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_assertion("dependent", "hasPartialKey", "name")
-                .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-                .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+                .object_property_value("employee", "hasKey", "ssn")
+                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+                .object_property_value("dependent", "hasPartialKey", "name")
+                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+                .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
 
         )
 
@@ -101,12 +101,12 @@ class TestRelationalRules(unittest.TestCase):
     def test_given_weak_mapped_relation_with_partial_key_map_partial_key_as_composed_key_component(self):
         scenario = (
             self._assert
-            .object_property_assertion("employee", "hasKey", "ssn")
-            .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-            .object_property_assertion("dependent", "hasPartialKey", "name")
-            .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasPartialKey", "name")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
 
         )
 
@@ -118,16 +118,16 @@ class TestRelationalRules(unittest.TestCase):
     def test_given_relationship_between_strong_and_weak_entity_infer(self):
         scenario = (
             self._assert
-            .object_property_assertion("employee", "hasKey", "ssn")
-            .object_property_assertion("employee", "hasAttribute", "employee_name")
-                .object_property_assertion("employee_name", "hasAttributeType", "simpleAttributeType")
-            .object_property_assertion("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-            .object_property_assertion("dependent", "hasPartialKey", "name")
-            .object_property_assertion("dependent", "hasAttribute", "age")
-                .object_property_assertion("age", "hasAttributeType", "simpleAttributeType")
-            .object_property_assertion("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-            .object_property_assertion("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_property_value("employee", "hasAttribute", "employee_name")
+                .object_property_value("employee_name", "hasAttributeType", "simpleAttributeType")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasPartialKey", "name")
+            .object_property_value("dependent", "hasAttribute", "age")
+                .object_property_value("age", "hasAttributeType", "simpleAttributeType")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
         )
 
         c = self._query.someClass("Relation")

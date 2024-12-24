@@ -18,7 +18,7 @@ class TestMapRelations(unittest.TestCase):
 
     def test_given_some_entity_map_to_relation(self):
 
-        scenario = self._assert.object_property_assertion("employee", "hasAttribute", "gender")
+        scenario = self._assert.object_property_value("employee", "hasAttribute", "gender")
 
         q1 = self._query.hasType("employee", "Relation")
 
@@ -29,8 +29,8 @@ class TestMapRelations(unittest.TestCase):
 
         scenario = (
             self._assert
-                .object_property_assertion("gender", "hasAttributeType", "simpleAttributeType")
-                .object_property_assertion("employee", "hasAttribute", "gender")
+                .object_property_value("gender", "hasAttributeType", "simpleAttributeType")
+                .object_property_value("employee", "hasAttribute", "gender")
             )
 
         q1 = self._query.hasType("employee", "Relation")
@@ -45,7 +45,7 @@ class TestMapRelations(unittest.TestCase):
 
     def test_given_some_entity_has_key_map_it_to_primary_key_relation(self):
 
-        scenario = self._assert.object_property_assertion("employee", "hasKey", "ssn")
+        scenario = self._assert.object_property_value("employee", "hasKey", "ssn")
 
         q1 = self._query.hasType("employee", "Relation")
         q2 = self._query.hasType("ssn", "RelationAttribute")
