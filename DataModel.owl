@@ -410,6 +410,35 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
+                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#manyParticipationCardinality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
+                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#OneToManyRelationship -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneToManyRelationship">
@@ -419,22 +448,12 @@
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
                         <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
-                                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#manyParticipationCardinality"/>
-                            </owl:Restriction>
-                        </owl:onClass>
+                        <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation"/>
                     </owl:Restriction>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
                         <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
-                                <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
-                            </owl:Restriction>
-                        </owl:onClass>
+                        <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -451,12 +470,7 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:qualifiedCardinality>
-                <owl:onClass>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationCardinality"/>
-                        <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#oneParticipationCardinality"/>
-                    </owl:Restriction>
-                </owl:onClass>
+                <owl:onClass rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
@@ -467,13 +481,14 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#PartialRelationshipParticipation -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#PartialRelationshipParticipation">
-        <owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationLevel"/>
                 <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel"/>
             </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation"/>
     </owl:Class>
     
 
@@ -669,13 +684,13 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation">
-        <owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationLevel"/>
                 <owl:hasValue rdf:resource="http://www.owl-ontologies.com/datamodel.owl#totalParticipationLevel"/>
             </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -757,7 +772,14 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#p1 -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#p1">
-        <datamodel:hasParticipationLevel rdf:resource="http://www.owl-ontologies.com/datamodel.owl#totalParticipationLevel"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -765,7 +787,14 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#p2 -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#p2">
-        <datamodel:hasParticipationLevel rdf:resource="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#PartialRelationshipParticipation"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -794,6 +823,8 @@
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#p1"/>
+        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#p2"/>
     </owl:NamedIndividual>
     
 

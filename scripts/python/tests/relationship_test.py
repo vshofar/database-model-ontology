@@ -27,15 +27,17 @@ class TestRelationshipParticipation(unittest.TestCase):
         scenario = (
             self._assert
             .object_property_value("employee", "hasKey", "ssn")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
+            .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
             .object_property_value("dependent", "hasPartialKey", "name")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
+            .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-            .restrict_relation_to_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation","dependsOfDependentParticipation"])
-
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
         )
 
         q1 = self._query.hasType("dependsOf", "OneToOneRelationship")
@@ -46,57 +48,20 @@ class TestRelationshipParticipation(unittest.TestCase):
         scenario = (
             self._assert
             .object_property_value("employee", "hasKey", "ssn")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationCardinality", "oneParticipationCardinality")
+            .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
             .object_property_value("dependent", "hasPartialKey", "name")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationCardinality", "manyParticipationCardinality")
+            .object_type("dependsOfDependentParticipation", "ManyCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-            .restrict_relation_to_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation","dependsOfDependentParticipation"])
-
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
         )
 
         q1 = self._query.hasType("dependsOf", "OneToManyRelationship")
-
-        self.assertTrue(scenario.evaluate(q1))
-
-
-    def test_a_relationship_with_some_total_participation_should_infer(self):
-        scenario = (
-            self._assert
-            .object_property_value("employee", "hasKey", "ssn")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationLevel", "totalParticipationLevel")
-            .object_property_value("dependent", "hasPartialKey", "name")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationCardinality", "manyParticipationCardinality")
-            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-            .restrict_relation_to_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation","dependsOfDependentParticipation"])
-
-        )
-
-        q1 = self._query.hasType("dependsOfEmployeeParticipation", "TotalRelationshipParticipation")
-
-        self.assertTrue(scenario.evaluate(q1))
-
-    def test_a_relationship_with_some_partial_participation_should_infer(self):
-        scenario = (
-            self._assert
-            .object_property_value("employee", "hasKey", "ssn")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
-                .object_property_value("dependsOfEmployeeParticipation", "hasParticipationLevel", "partialParticipationLevel")
-            .object_property_value("dependent", "hasPartialKey", "name")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
-                .object_property_value("dependsOfDependentParticipation", "hasParticipationCardinality", "manyParticipationCardinality")
-            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
-            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
-            .restrict_relation_to_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation","dependsOfDependentParticipation"])
-
-        )
-
-        q1 = self._query.hasType("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
 
         self.assertTrue(scenario.evaluate(q1))
 
