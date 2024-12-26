@@ -50,6 +50,53 @@ class TestRelationshipParticipation(unittest.TestCase):
 
         self.assertTrue(scenario.evaluate(q1))
 
+    def test_given_partial_participation_with_participation_entity_with_key_should_infer(self):
+        scenario = (
+            self._assert
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasPartialKey", "name")
+            .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
+        )
+
+        q1 = self._query.hasPropertyValue("dependsOf", "hasPartialParticipationKey", "ssn")
+        q2 = self._query.hasPropertyValue("dependsOf", "hasPartialParticipationEntity", "employee")
+
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+
+    def test_given_total_participation_with_participation_entity_with_key_should_infer(self):
+        scenario = (
+            self._assert
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfEmployeeParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasPartialKey", "name")
+            .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
+        )
+
+        q1 = self._query.hasPropertyValue("dependsOf", "hasTotalParticipationKey", "ssn")
+        q2 = self._query.hasPropertyValue("dependsOf", "hasTotalParticipationEntity", "employee")
+
+        self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+
+
 
 
 
