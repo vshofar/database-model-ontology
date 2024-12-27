@@ -22,3 +22,20 @@
 - when using cardinality restriction wen must consider that is necessary asssert that the relations exists and no other relations exists.
 
 
+OneToOneRelationship(?r) ^ hasTotalParticipation(?r, ?tp) ^ hasPartialParticipation(?r, ?pp) 
+
+hasParticipation(?r, ?rp) ^ TotalRelationshipParticipation(?rp) -> hasTotalParticipation(?r, ?rp)
+hasParticipation(?r, ?rp) ^ PartialRelationshipParticipation(?rp) -> hasPartialParticipation(?r, ?rp)
+
+
+
+hasPartialParticipationEntity(?r, ?e) ^ hasKey(?e, ?k)  -> hasPartialParticipationKey(?r, ?k)
+hasTotalParticipationEntity(?r, ?e) ^ hasKey(?e, ?k) -> hasTotalParticipationKey(?r, ?k)
+
+hasTotalParticipation(?r, ?tp) ^ hasParticipationEntity(?tp, ?e) -> hasTotalParticipationEntity(?r, ?e)
+hasPartialParticipation(?r, ?pp) ^ hasParticipationEntity(?pp, ?e) -> hasPartialParticipationEntity(?r, ?e)
+
+
+OneToOneRelationship(?r) ^ hasPartialParticipationKey(?r, ?ppk) ^ hasTotalParticipationEntity(?r, ?tpe) -> isForeignKeyOf(?k,?tpe)
+hasRelationshipWithWeakEntity(?se, ?we) ^ isParticipationEntityOf(?we, ?rp) ^ isPrimaryKeyOf(?pk, ?se) -> hasReferenceParticipationRelation(?rp, ?we) ^ hasReferenceParticipationRelationAttribute(?rp, ?pk) ^ hasReferenceParticipationSide(?rp, originReferenceParticipationSide)
+OneToOneRelationship(?r) ^ hasTotalParticipation(?r, ?pp) ^ hasPartialParticipationKey(?r, ?ppk) ^ hasTotalParticipationEntity(?r, ?tpe) -> hasReferenceParticipationRelation(?pp, ?we) ^ hasReferenceParticipationRelationAttribute(?rp, ?pk) ^ hasReferenceParticipationSide(?rp, originReferenceParticipationSide)

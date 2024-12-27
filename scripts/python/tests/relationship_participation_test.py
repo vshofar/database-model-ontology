@@ -67,11 +67,10 @@ class TestRelationshipParticipation(unittest.TestCase):
                                                                                      "dependsOfDependentParticipation"])
         )
 
-        q1 = self._query.hasPropertyValue("dependsOf", "hasPartialParticipationKey", "ssn")
-        q2 = self._query.hasPropertyValue("dependsOf", "hasPartialParticipationEntity", "employee")
+        q1 = self._query.hasPropertyValue("dependsOf", "hasPartialParticipation", "dependsOfEmployeeParticipation")
 
         self.assertTrue(scenario.evaluate(q1))
-        self.assertTrue(scenario.evaluate(q2))
+
 
     def test_given_total_participation_with_participation_entity_with_key_should_infer(self):
         scenario = (
@@ -90,11 +89,10 @@ class TestRelationshipParticipation(unittest.TestCase):
                                                                                      "dependsOfDependentParticipation"])
         )
 
-        q1 = self._query.hasPropertyValue("dependsOf", "hasTotalParticipationKey", "ssn")
-        q2 = self._query.hasPropertyValue("dependsOf", "hasTotalParticipationEntity", "employee")
+        q1 = self._query.hasPropertyValue("dependsOf", "hasTotalParticipation", "dependsOfEmployeeParticipation")
 
         self.assertTrue(scenario.evaluate(q1))
-        self.assertTrue(scenario.evaluate(q2))
+
 
 
 
