@@ -22,7 +22,6 @@ class TestRelationalRules(unittest.TestCase):
             self._assert
             .object_property_value("employee", "hasKey", "ssn")
             .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
-            .object_type("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
             .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
             .object_property_value("dependent", "hasKey", "name")
             .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
@@ -55,7 +54,6 @@ class TestRelationalRules(unittest.TestCase):
             self._assert
             .object_property_value("employee", "hasKey", "ssn")
             .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
-            .object_type("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
             .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
             .object_property_value("dependent", "hasKey", "name")
             .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")

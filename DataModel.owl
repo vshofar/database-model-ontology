@@ -1048,7 +1048,7 @@
                                         <rdf:first>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialParticipation"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
                                                 <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
                                                 <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
                                             </rdf:Description>
@@ -1058,10 +1058,9 @@
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
                                                 <rdf:first>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
-                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
-                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"/>
+                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#tp"/>
+                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
                                                     </rdf:Description>
                                                 </rdf:first>
                                                 <rdf:rest>
@@ -1070,12 +1069,25 @@
                                                         <rdf:first>
                                                             <rdf:Description>
                                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
-                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
-                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
+                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
+                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
                                                             </rdf:Description>
                                                         </rdf:first>
-                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
+                                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
                                                     </rdf:Description>
                                                 </rdf:rest>
                                             </rdf:Description>
@@ -1146,7 +1158,7 @@
                                         <rdf:first>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialParticipation"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
                                                 <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
                                                 <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
                                             </rdf:Description>
@@ -1156,10 +1168,9 @@
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
                                                 <rdf:first>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
-                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
-                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"/>
+                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#tp"/>
+                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
                                                     </rdf:Description>
                                                 </rdf:first>
                                                 <rdf:rest>
@@ -1168,12 +1179,25 @@
                                                         <rdf:first>
                                                             <rdf:Description>
                                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
-                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
-                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
+                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
+                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
                                                             </rdf:Description>
                                                         </rdf:first>
-                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
+                                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
                                                     </rdf:Description>
                                                 </rdf:rest>
                                             </rdf:Description>
@@ -1270,7 +1294,7 @@
                                         <rdf:first>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasPartialParticipation"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
                                                 <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
                                                 <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
                                             </rdf:Description>
@@ -1280,10 +1304,9 @@
                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
                                                 <rdf:first>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
-                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
-                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"/>
+                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#tp"/>
+                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
                                                     </rdf:Description>
                                                 </rdf:first>
                                                 <rdf:rest>
@@ -1292,12 +1315,25 @@
                                                         <rdf:first>
                                                             <rdf:Description>
                                                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
-                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
-                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
+                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#pp"/>
+                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
                                                             </rdf:Description>
                                                         </rdf:first>
-                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ppe"/>
+                                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
                                                     </rdf:Description>
                                                 </rdf:rest>
                                             </rdf:Description>

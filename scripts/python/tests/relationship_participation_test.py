@@ -81,7 +81,6 @@ class TestRelationshipParticipation(unittest.TestCase):
             .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
             .object_property_value("dependent", "hasPartialKey", "name")
             .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
-            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
             .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
