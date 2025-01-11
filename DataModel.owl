@@ -770,6 +770,58 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/datamodel.owl#_dependsOf -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOf">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation"/>
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation"/>
+        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation">
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation">
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#PartialRelationshipParticipation"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#calculatedAttributeType">
@@ -809,62 +861,10 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/datamodel.owl#p1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#p1">
-        <rdf:type>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation"/>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/datamodel.owl#p2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#p2">
-        <rdf:type>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation"/>
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#PartialRelationshipParticipation"/>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#partialParticipationLevel">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ParticipationLevel"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/datamodel.owl#r1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#r1">
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#p1"/>
-                            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#p2"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#p1"/>
-        <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#p2"/>
     </owl:NamedIndividual>
     
 
