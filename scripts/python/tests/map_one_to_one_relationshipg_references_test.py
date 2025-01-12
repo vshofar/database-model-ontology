@@ -16,7 +16,7 @@ class TestRelationalRules(unittest.TestCase):
         self._assert = OntologyAssert(self.reasoner)
         self._query = OntologyQuery(self.reasoner.ontology)
 
-    def test_given_one_to_one_relationship_with_total_participation_map_total_relation_references(self):
+    def test_given_one_to_one_relationship_with_total_participation_map_origin_references(self):
 
         scenario = (
             self._assert
@@ -48,7 +48,7 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q3))
         self.assertTrue(scenario.evaluate(q4))
 
-    def test_given_one_to_one_relationship_with_total_participation_map_other_relation_references(self):
+    def test_given_one_to_one_relationship_with_total_participation_map_target_references(self):
 
         scenario = (
             self._assert

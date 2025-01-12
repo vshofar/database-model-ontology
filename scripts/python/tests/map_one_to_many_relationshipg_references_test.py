@@ -16,7 +16,7 @@ class TestRelationalRules(unittest.TestCase):
         self._assert = OntologyAssert(self.reasoner)
         self._query = OntologyQuery(self.reasoner.ontology)
 
-    def test_given_one_to_many_relationship_relation_foreign_key(self):
+    def test_given_one_to_many_relationship_relation_map_foreign_key(self):
 
         scenario = (
             self._assert
@@ -37,7 +37,7 @@ class TestRelationalRules(unittest.TestCase):
 
         self.assertTrue(scenario.evaluate(q0))
 
-    def test_given_one_to_many_relationship_relation_origin_reference(self):
+    def test_given_one_to_many_relationship_relation_map_origin_reference(self):
 
         scenario = (
             self._assert
@@ -67,7 +67,7 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q3))
         self.assertTrue(scenario.evaluate(q4))
 
-    def test_given_one_to_many_relationship_relation_target_reference(self):
+    def test_given_one_to_many_relationship_relation_map_target_reference(self):
 
         scenario = (
             self._assert
@@ -97,7 +97,27 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q3))
         self.assertTrue(scenario.evaluate(q4))
 
+    def test_given_one_to_many_relationship_relation_with_attribute_map_relation_attribute(self):
 
+        scenario = (
+            self._assert
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasAttribute", "name")
+            .object_type("dependsOfDependentParticipation", "ManyCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_value("dependsOf", "hasRelationshipAttribute", "dependency")
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
+        )
+
+        q1 = self._query.hasPropertyValue("dependent", "hasRelationAttribute", "dependency")
+
+        self.assertTrue(scenario.evaluate(q1))
 
 
 
