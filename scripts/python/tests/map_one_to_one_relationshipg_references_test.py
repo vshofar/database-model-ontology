@@ -48,7 +48,7 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q3))
         self.assertTrue(scenario.evaluate(q4))
 
-    def test_given_one_to_one_relationship_with_total_participation_map_partial_relation_references(self):
+    def test_given_one_to_one_relationship_with_total_participation_map_other_relation_references(self):
 
         scenario = (
             self._assert
@@ -77,6 +77,30 @@ class TestRelationalRules(unittest.TestCase):
         self.assertTrue(scenario.evaluate(q2))
         self.assertTrue(scenario.evaluate(q3))
         self.assertTrue(scenario.evaluate(q4))
+
+    def test_given_one_to_one_relationship_with_total_participation_and_relationship_attributes_map_relation_attributes(self):
+
+        scenario = (
+            self._assert
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasKey", "name")
+            .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_value("dependsOf", "hasRelationshipAttribute", "dependency")
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
+        )
+
+        q1 = self._query.hasPropertyValue("dependent", "hasRelationAttribute","dependency")
+
+        self.assertTrue(scenario.evaluate(q1))
+
+
 
 
 
