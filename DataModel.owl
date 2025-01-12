@@ -1214,6 +1214,130 @@
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment>Map Reference Participation Origin for Relationship between One To One Relationship</rdfs:comment>
+        <rdfs:label>D2.3 - Map One To Many Relationship Reference Participation Target</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneToManyRelationship"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasOneCardinalityParticipation"/>
+                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#op"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
+                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#op"/>
+                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ope"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasManyCardinalityParticipation"/>
+                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
+                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#mp"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipationEntity"/>
+                                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#mp"/>
+                                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#mpe"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasKey"/>
+                                                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ope"/>
+                                                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasReferenceParticipationRelation"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#op"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#ope"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasReferenceParticipationRelationAttribute"/>
+                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#op"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#k"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasReferenceParticipationSide"/>
+                                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#op"/>
+                                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/datamodel.owl#targetReferenceParticipationSide"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
         <rdfs:comment>Map One To One Relationship Foreign Key</rdfs:comment>
         <rdfs:label>D2.1 - Map One To many Relationship Foreign Key</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
