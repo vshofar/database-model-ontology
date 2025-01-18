@@ -114,7 +114,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/datamodel.owl#hasManyCardinalityParticipation">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
-        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/datamodel.owl#Relationship"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationshipParticipation"/>
     </owl:ObjectProperty>
     
@@ -630,7 +630,6 @@
                 <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationAttribute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/datamodel.owl#RelationAttribute"/>
     </owl:Class>
     
 
@@ -783,7 +782,7 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#_dependent -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependent">
-        <datamodel:hasAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependent_name"/>
+        <datamodel:hasKey rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependent_name"/>
     </owl:NamedIndividual>
     
 
@@ -812,7 +811,6 @@
         </rdf:type>
         <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation"/>
         <datamodel:hasParticipation rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation"/>
-        <datamodel:hasRelationshipAttribute rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependency"/>
     </owl:NamedIndividual>
     
 
@@ -820,14 +818,7 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOfDependentParticipation">
-        <rdf:type>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation"/>
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#TotalRelationshipParticipation"/>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdf:type>
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
         <datamodel:hasParticipationEntity rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_dependent"/>
     </owl:NamedIndividual>
     
@@ -836,7 +827,7 @@
     <!-- http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/datamodel.owl#_dependsOfEmployeeParticipation">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/datamodel.owl#ManyCardinalityRelationshipParticipation"/>
         <datamodel:hasParticipationEntity rdf:resource="http://www.owl-ontologies.com/datamodel.owl#_employee"/>
     </owl:NamedIndividual>
     
@@ -949,6 +940,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ReferenceParticipation"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#ReferenceParticipationSide"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#Relation"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/datamodel.owl#RelationAttribute"/>
         </owl:members>
@@ -1035,52 +1027,6 @@
     </rdf:Description>
     <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#pk">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
-    <rdf:Description>
-        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment>Discover Partial Participation Level Participations</rdfs:comment>
-        <rdfs:label>B4.1 - Discover One Cardinality Participation</rdfs:label>
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
-                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
-                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
-                            </rdf:Description>
-                        </rdf:first>
-                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasOneCardinalityParticipation"/>
-                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
-                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            </rdf:Description>
-        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
@@ -2795,6 +2741,52 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasManyCardinalityParticipation"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment>Discover Partial Participation Level Participations</rdfs:comment>
+        <rdfs:label>B4.1 - Discover One Cardinality Participation</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasParticipation"/>
+                        <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
+                        <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#OneCardinalityRelationshipParticipation"/>
+                                <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/datamodel.owl#hasOneCardinalityParticipation"/>
                         <swrl:argument1 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#r"/>
                         <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/unnamed.owl#p"/>
                     </rdf:Description>
