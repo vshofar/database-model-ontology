@@ -36,6 +36,28 @@ class TestRelationalRules(unittest.TestCase):
 
         self.assertTrue(scenario.evaluate(q0))
 
+    def test_given_many_to_many_relationship_map_relationship_relation_coposed_key_parts(self):
+
+        scenario = (
+            self._assert
+            .object_property_value("employee", "hasKey", "ssn")
+            .object_type("dependsOfEmployeeParticipation", "ManyCardinalityRelationshipParticipation")
+            .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
+            .object_property_value("dependent", "hasKey", "name")
+            .object_type("dependsOfDependentParticipation", "ManyCardinalityRelationshipParticipation")
+            .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+            .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+            .object_property_only_with_individuals("dependsOf", "hasParticipation", ["dependsOfEmployeeParticipation",
+                                                                                     "dependsOfDependentParticipation"])
+        )
+
+        q0 = self._query.hasPropertyValue("dependsOf", "hasComposedKeyComponent", "ssn")
+        q1 = self._query.hasPropertyValue("dependsOf", "hasComposedKeyComponent", "name")
+
+        self.assertTrue(scenario.evaluate(q0))
+        self.assertTrue(scenario.evaluate(q1))
+
 
 
 
