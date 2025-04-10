@@ -39,3 +39,10 @@ hasPartialParticipation(?r, ?pp) ^ hasParticipationEntity(?pp, ?e) -> hasPartial
 OneToOneRelationship(?r) ^ hasPartialParticipationKey(?r, ?ppk) ^ hasTotalParticipationEntity(?r, ?tpe) -> isForeignKeyOf(?k,?tpe)
 hasRelationshipWithWeakEntity(?se, ?we) ^ isParticipationEntityOf(?we, ?rp) ^ isPrimaryKeyOf(?pk, ?se) -> hasReferenceParticipationRelation(?rp, ?we) ^ hasReferenceParticipationRelationAttribute(?rp, ?pk) ^ hasReferenceParticipationSide(?rp, originReferenceParticipationSide)
 OneToOneRelationship(?r) ^ hasTotalParticipation(?r, ?pp) ^ hasPartialParticipationKey(?r, ?ppk) ^ hasTotalParticipationEntity(?r, ?tpe) -> hasReferenceParticipationRelation(?pp, ?we) ^ hasReferenceParticipationRelationAttribute(?rp, ?pk) ^ hasReferenceParticipationSide(?rp, originReferenceParticipationSide)
+
+ManyToManyRelationship(?r) -> Relation(?r)
+
+ManyToManyRelationship(?r) ^ hasParticipation(?r, ?p1) ^ hasParticipationEntity(?p1, ?e1) ^ hasKey(?e1, ?k1) -> hasCompsedKeyComponent(?r, ?k1)    
+
+
+datamodel:ManyToManyRelationship(?r) ^ datamodel:hasParticipation(?r, ?p1) ^ datamodel:hasParticipationEntity(?p1, ?e1) ^ datamodel:hasKey(?e1, ?k1) -> datamodel:hasReferenceParticipationRelation(?p1, ?r) ^ datamodel:hasReferenceParticipationRelationAttribute(?p1, ?k1) ^ datamodel:hasReferenceParticipationSide(?p1, datamodel:originReferenceParticipationSide)
