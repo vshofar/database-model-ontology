@@ -13,8 +13,36 @@
     - it looks to be the better alternative to addres the initial requirement of using relations to declare facts ans infer class instances
 
 - not declaring tha two individuals are diferent can create duplicated axioms    
+
 - when executinig swrl reasonig, we must wonder that the facts must be considered as true before reasonig
     - this way, some assertion can be evaluated as true, after execute reasoning more tha one time !!!
-- query ontolofy througn owlready api 2 afer run reasoner does not give the same result as query reasoner
+
+- query ontology througn owlready api 2 afer run reasoner does not give the same result as query reasoner
+
+- when using cardinality restriction wen must consider that is necessary asssert that the relations exists and no other relations exists.
 
 
+OneToOneRelationship(?r) ^ hasTotalParticipation(?r, ?tp) ^ hasPartialParticipation(?r, ?pp) 
+
+hasParticipation(?r, ?rp) ^ TotalRelationshipParticipation(?rp) -> hasTotalParticipation(?r, ?rp)
+hasParticipation(?r, ?rp) ^ PartialRelationshipParticipation(?rp) -> hasPartialParticipation(?r, ?rp)
+
+
+
+hasPartialParticipationEntity(?r, ?e) ^ hasKey(?e, ?k)  -> hasPartialParticipationKey(?r, ?k)
+hasTotalParticipationEntity(?r, ?e) ^ hasKey(?e, ?k) -> hasTotalParticipationKey(?r, ?k)
+
+hasTotalParticipation(?r, ?tp) ^ hasParticipationEntity(?tp, ?e) -> hasTotalParticipationEntity(?r, ?e)
+hasPartialParticipation(?r, ?pp) ^ hasParticipationEntity(?pp, ?e) -> hasPartialParticipationEntity(?r, ?e)
+
+
+OneToOneRelationship(?r) ^ hasPartialParticipationKey(?r, ?ppk) ^ hasTotalParticipationEntity(?r, ?tpe) -> isForeignKeyOf(?k,?tpe)
+hasRelationshipWithWeakEntity(?se, ?we) ^ isParticipationEntityOf(?we, ?rp) ^ isPrimaryKeyOf(?pk, ?se) -> hasReferenceParticipationRelation(?rp, ?we) ^ hasReferenceParticipationRelationAttribute(?rp, ?pk) ^ hasReferenceParticipationSide(?rp, originReferenceParticipationSide)
+OneToOneRelationship(?r) ^ hasTotalParticipation(?r, ?pp) ^ hasPartialParticipationKey(?r, ?ppk) ^ hasTotalParticipationEntity(?r, ?tpe) -> hasReferenceParticipationRelation(?pp, ?we) ^ hasReferenceParticipationRelationAttribute(?rp, ?pk) ^ hasReferenceParticipationSide(?rp, originReferenceParticipationSide)
+
+ManyToManyRelationship(?r) -> Relation(?r)
+
+ManyToManyRelationship(?r) ^ hasParticipation(?r, ?p1) ^ hasParticipationEntity(?p1, ?e1) ^ hasKey(?e1, ?k1) -> hasCompsedKeyComponent(?r, ?k1)    
+
+
+datamodel:ManyToManyRelationship(?r) ^ datamodel:hasParticipation(?r, ?p1) ^ datamodel:hasParticipationEntity(?p1, ?e1) ^ datamodel:hasKey(?e1, ?k1) -> datamodel:hasReferenceParticipationRelation(?p1, ?r) ^ datamodel:hasReferenceParticipationRelationAttribute(?p1, ?k1) ^ datamodel:hasReferenceParticipationSide(?p1, datamodel:originReferenceParticipationSide)

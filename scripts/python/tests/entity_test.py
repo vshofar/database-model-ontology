@@ -13,7 +13,7 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_has_attribute_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("employee","hasAttribute","salary")
+        scenario = self._assert.object_property_value("employee", "hasAttribute", "salary")
 
         q1 = self._query.hasPropertyValue("salary", "isAttributeOf", "employee")
         q2 = self._query.hasType("salary", "Attribute")
@@ -24,7 +24,7 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_has_key_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("employee","hasKey","ssn")
+        scenario = self._assert.object_property_value("employee", "hasKey", "ssn")
 
         q1 = self._query.hasType("employee", "Entity")
         q2 = self._query.hasType("employee", "StrongEntity")
@@ -41,7 +41,7 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_hasPartialKey_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("dependent", "hasPartialKey", "name")
+        scenario = self._assert.object_property_value("dependent", "hasPartialKey", "name")
 
         q1 = self._query.hasType("dependent", "Entity")
         q2 = self._query.hasType("dependent", "WeakEntity")
@@ -58,7 +58,7 @@ class TestEntity(unittest.TestCase):
 
     def test_given_thing_isAttributeOf_thing_should_infer(self):
 
-        scenario = self._assert.object_property_assertion("gender", "isAttributeOf", "dependent")
+        scenario = self._assert.object_property_value("gender", "isAttributeOf", "dependent")
 
         q1 = self._query.hasType("dependent", "Entity")
         q2 = self._query.hasType("gender", "Attribute")

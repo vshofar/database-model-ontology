@@ -1,56 +1,22 @@
 import unittest
 
+from funowl import ClassAxiom
+from owlapy.class_expression import OWLClassExpression, OWLClass, OWLObjectSomeValuesFrom
+
 from python.experiment.owlapy.ontology_assert import OntologyAssert
 from python.experiment.owlapy.ontology_query import OntologyQuery
+from python.experiment.owlapy.utils import print_query_result, print_ident
 
 from python.tests.utils import load_reasoner
 
-class TestRelationshipParticipation(unittest.TestCase):
+class TestRelationalRules(unittest.TestCase):
 
     def setUp(self):
-        self.reasoner = load_reasoner("Pellet")
+        self.reasoner = load_reasoner("HermiT")
         self._assert = OntologyAssert(self.reasoner)
         self._query = OntologyQuery(self.reasoner.ontology)
-    
-    def test_given_thing_hasParticipationEntity_thing_should_infer(self):
 
-        scenario = self._assert.object_property_value(
-            "dependentsOfRelationshipParticipation",
-            "hasParticipationEntity",
-            "employee"
-        )
-
-        q1 = self._query.hasType("dependentsOfRelationshipParticipation", "RelationshipParticipation")
-
-        self.assertTrue(scenario.evaluate(q1))
-
-
-    def test_given_thing_hasParticipationCardinality_thing_should_infer(self):
-
-        scenario = self._assert.object_property_value(
-            "dependentsOfRelationshipParticipation",
-            "hasParticipationCardinality",
-            "one"
-        )
-
-        q1 = self._query.hasType("dependentsOfRelationshipParticipation", "RelationshipParticipation")
-
-        self.assertTrue(scenario.evaluate(q1))
-
-
-    def test_given_thing_hasParticipationLevel_thing_should_infer(self):
-
-        scenario = self._assert.object_property_value(
-            "dependentsOfRelationshipParticipation",
-            "hasParticipationLevel",
-            "total"
-        )
-
-        q1 = self._query.hasType("dependentsOfRelationshipParticipation", "RelationshipParticipation")
-
-        self.assertTrue(scenario.evaluate(q1))
-
-    def test_given_partial_participation_with_participation_entity_with_key_should_infer(self):
+    def test_given_two_entities_participates_of_some_relation_through_relationship_participations_then_they_should_relate_to_each_other(self):
         scenario = (
             self._assert
             .object_property_value("employee", "hasKey", "ssn")
@@ -67,20 +33,33 @@ class TestRelationshipParticipation(unittest.TestCase):
                                                                                      "dependsOfDependentParticipation"])
         )
 
-        q1 = self._query.hasPropertyValue("dependsOf", "hasPartialParticipation", "dependsOfEmployeeParticipation")
+
+        q1 = self._query.hasType("dependent", "Entity")
+        q2 = self._query.hasType("dependsOf", "Relationship")
+        q3 = self._query.hasPropertyValue("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
+
+        q4 = self._query.hasType("employee", "Entity")
+        q5 = self._query.hasPropertyValue("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
+        q6 = self._query.hasPropertyValue("dependent", "hasRelationshipWith", "employee")
 
         self.assertTrue(scenario.evaluate(q1))
+        self.assertTrue(scenario.evaluate(q2))
+        self.assertTrue(scenario.evaluate(q3))
+        self.assertTrue(scenario.evaluate(q4))
+        self.assertTrue(scenario.evaluate(q5))
+        self.assertTrue(scenario.evaluate(q6))
 
-
-    def test_given_total_participation_with_participation_entity_with_key_should_infer(self):
+    def test_given_string_and_weak_entity_participates_of_some_relation_through_relationship_participations_then_they_should_relate_to_each_other(
+            self):
         scenario = (
             self._assert
             .object_property_value("employee", "hasKey", "ssn")
             .object_type("dependsOfEmployeeParticipation", "OneCardinalityRelationshipParticipation")
-            .object_type("dependsOfEmployeeParticipation", "TotalRelationshipParticipation")
+            .object_type("dependsOfEmployeeParticipation", "PartialRelationshipParticipation")
             .object_property_value("dependsOfEmployeeParticipation", "hasParticipationEntity", "employee")
             .object_property_value("dependent", "hasPartialKey", "name")
             .object_type("dependsOfDependentParticipation", "OneCardinalityRelationshipParticipation")
+            .object_type("dependsOfDependentParticipation", "TotalRelationshipParticipation")
             .object_property_value("dependsOfDependentParticipation", "hasParticipationEntity", "dependent")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfEmployeeParticipation")
             .object_property_value("dependsOf", "hasParticipation", "dependsOfDependentParticipation")
@@ -88,9 +67,12 @@ class TestRelationshipParticipation(unittest.TestCase):
                                                                                      "dependsOfDependentParticipation"])
         )
 
-        q1 = self._query.hasPropertyValue("dependsOf", "hasTotalParticipation", "dependsOfEmployeeParticipation")
+        q1 = self._query.hasPropertyValue("employee", "hasRelationshipWithWeakEntity", "dependent")
 
         self.assertTrue(scenario.evaluate(q1))
+
+
+
 
 
 
